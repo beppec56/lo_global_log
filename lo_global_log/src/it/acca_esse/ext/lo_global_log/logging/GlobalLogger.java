@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import com.sun.star.uno.XComponentContext;
 
 import it.acca_esse.ext.lo_global_log.GlobalConstant;
+import it.acca_esse.ext.lo_global_log.LoggerLevel;
 import it.acca_esse.ext.lo_global_log.XOX_Logger;
 
 public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Logger {
@@ -220,25 +221,25 @@ public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Log
 					default:
 						m_aLogger.logp(Level.FINE, arg1, arg2, arg3);
 						break;
-					case GlobalConstant.m_nLOG_CONFIG:
+					case LoggerLevel.LOG_CONFIG_value:
 						m_aLogger.logp(Level.CONFIG, arg1, arg2, arg3);						
 						break;
-					case GlobalConstant.m_nLOG_ALWAYS:
+					case LoggerLevel.LOG_ALWAYS_value:
 						if(m_bEnableInfoLevel)
 							m_aLogger.logp(Level.FINER, arg1, arg2, arg3);						
 						break;
-					case GlobalConstant.m_nLOG_LEVEL_INFO:
+					case LoggerLevel.LOG_LEVEL_INFO_value:
 						if(m_bEnableInfoLevel)
 							m_aLogger.logp(Level.INFO, arg1, arg2, arg3);						
 						break;
-					case GlobalConstant.m_nLOG_LEVEL_DEBUG:
+					case LoggerLevel.LOG_LEVEL_FINE_value:
 						if(m_bEnableDebugLogging)
 							m_aLogger.logp(Level.FINE, arg1, arg2, arg3);						
 						break;
-					case GlobalConstant.m_nLOG_LEVEL_SEVERE:
+					case LoggerLevel.LOG_LEVEL_SEVERE_value:
 						m_aLogger.logp(Level.SEVERE, arg1, arg2, arg3);						
 						break;			
-					case GlobalConstant.m_nLOG_LEVEL_WARNING:
+					case LoggerLevel.LOG_LEVEL_WARNING_value:
 //FIXME: for the time being a warning is always logged
 //						if(m_bEnableDebugLogging)
 							m_aLogger.logp(Level.WARNING, arg1, arg2, arg3);						

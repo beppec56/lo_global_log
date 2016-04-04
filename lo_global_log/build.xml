@@ -144,6 +144,11 @@ the default target must be removed
 			<param name="parm2" value="it.acca_esse.ext.lo_global_log"/>
 		</antcall>
 
+		<antcall target="compile-idl">
+			<param name="parm1" value="LoggerLevel"/>
+			<param name="parm2" value="it.acca_esse.ext.lo_global_log"/>
+		</antcall>
+
 		<!-- last thing, build documentation files, only locally, not in git for copyright reason -->
 		<exec dir="${uno_idl}" executable="${basedir}/generate-idl-doc.sh" description="generate idl documentation" os="Linux-i386">
 			<arg value="${lo_sdk_init_script}"/>

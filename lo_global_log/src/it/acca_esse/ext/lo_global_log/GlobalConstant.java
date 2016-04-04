@@ -26,12 +26,4 @@ public class GlobalConstant {
 	/// for XOX_Logger
 	public static final String m_sSINGLETON_LOGGER_SERVICE = m_sEXTENSION_IDENTIFIER + ".singleton.GlobalLogger";
 	public static final String m_sSINGLETON_LOGGER_SERVICE_INSTANCE = "/singletons/"+m_sSINGLETON_LOGGER_SERVICE;
-
-	public static final int	m_nLOG_LEVEL_FINE									= 0;
-	public static final int	m_nLOG_LEVEL_INFO									= 1;
-	public static final int	m_nLOG_LEVEL_DEBUG									= 2;
-	public static final int	m_nLOG_LEVEL_WARNING								= 3;
-	public static final int	m_nLOG_LEVEL_SEVERE									= 4;
-	public static final int	m_nLOG_CONFIG									    = 5;
-	public static final int	m_nLOG_ALWAYS									    = 6;
 }
