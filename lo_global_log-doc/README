@@ -1,0 +1,93 @@
+General informations
+====================
+
+Using Eclipse to edit the project
+=================================
+
+This brief description written using Eclipse 4.5.2.
+
+3) In Eclipse you will have to set two Classpath Variables, which point to related OOo locations,
+	platform-dependent (Eclipse main menu: Windows > Preferences... Java > Build Path > Classpath Variables):
+
+   	A variable points to the <LO installation dir>; it is not needed to
+   	successfully build the subprojects, but may be it will be needed in the future, and
+   	we add it also for reference purpose:
+
+   - LO_HOME :			for the Windows platform the value is (usually):
+   						???
+						for the Linux platform for LO 5.1 the value is (usually):
+						/opt/libreoffice5.1
+
+   - LO_CLASSES:		needed to address the following libs: jut.jar,unoil.jar, juh.jar, jurt.jar, ridl.jar;
+   						for the Windows platform the value is:
+   						???
+   						for the Linux platform the value is:
+   						<LO_HOME>/program/classes
+
+	Now on each Java project you need to add the unoil.jar, juh.jar manually, addiding them to the Java build path
+	
+	Each working project includes a build.xml Ant file; you have to provide, similarly
+	to classpath variables, the values for three properties used in these files.
+	Or you can set them inside Eclipse in the global Ant->Runtime configuration.
+
+	If you are using Ant outside Eclipse too, you should provide the values in a
+	build.<platform>.properties file, named according the platform:
+	for Linux: build.Linux-i386.properties 
+	for Windows XP: build.Windows XP-x86.properties.
+
+	If you build using 'Run > External Tools > Run as > Ant build', then the latter
+	above is the way to go.
+
+	The build.xml properties are the following:
+
+   - losdk : 			The path to the OOO SDK installation
+   						for the Windows platform the value is (usually):
+   						C:\Programmi\OpenOffice.org 3\Basis\sdk
+
+   						for the Linux platform is:
+   						<OOo3 installation dir>/basis-link/sdk
+
+   - lo_classes : 	for the Windows platform the value is:
+   						<OOo3 installation dir>\Basis\program\classes
+   		    	   		for the linux platform the value is:
+   						<OOo3 installation dir>/basis-link/program/classes
+
+
+4)  After that you can continue to checkout the needed projects in the order given below, the projects
+	contain the files Eclipse needs for correct project initialization, so use the default provided.
+	
+	The Eclipse projects are (the order is the order you should check them out):
+
+	easy_browser-ext_conf, oxsit-uno_types, oxsit-sig_opt_uno, oxsit-sing_var_uno,
+	
+	
+	After that, if all is ok and 'Build Automatically' is checked, Eclipse will compile the Java projects
+	as soon as they are checked-out.
+	This operation will check the code, but to build the extension you need to build all under ant.
+	
+	Follow point 5) below to complete the building procedure.
+	
+	Following is a brief description of the projects:
+   
+	easy_browser-doc			contains this file and other general information, among it there is
+   	                            the manual and the full text of the licenses (only in English and
+   	                            Italian you may check for your language on the European Union
+   	                            web.
+   	                            It's a simple Eclipse project.
+
+	easy_browser-ext_conf		contains extension specific files and the main ant build.xml file.
+   	                            It's a simple Eclipse project.
+	
+5) To build from the operating system command line (if you checked out as explained in a
+   unique workspace), go to subproject easy_browser-ext_conf, it contains the main ant
+   build.xml file and issue the command:
+
+   ant build-extension
+
+   the full extension will be built in the same directory.
+   This build can be started from inside Eclipse by using:
+
+   a) open the main build.xml (oxsit-ext_con/build.xml)
+   b) menu: Run > External Tools > Run As > Ant Build...
+   
+   
