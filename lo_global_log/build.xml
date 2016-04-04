@@ -26,8 +26,8 @@ the default target must be removed
 
 -->
 <project name="lo_global_log" default="build-jar" basedir=".">
-	<property name="project_friendly_name" value="lo-global-log" />	
-	<property name="project_name" value="${project_friendly_name}-uno_types" />
+	<property name="project_friendly_name" value="lo_global_log" />	
+	<property name="project_name" value="${project_friendly_name}" />
 	<property name="extension_jar_file" value="${project_name}.uno.jar" />
 	<property name="extension_rdb_file" value="${project_name}.uno.rdb" />
 	<description>
