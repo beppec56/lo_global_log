@@ -1,6 +1,6 @@
 /*************************************************************************
  * 
- *  Copyright 2009 by Giuseppe Castagno beppec56@openoffice.org
+ *  Copyright 2016 by Giuseppe Castagno giuseppe.castagno@acca-esse.eu
  *  
  *  The Contents of this file are made available subject to
  *  the terms of European Union Public License (EUPL) version 1.1
@@ -20,10 +20,10 @@
  *
  ************************************************************************/
 
-#ifndef __it_guermandi_ext_easyb_logging_XOX_Logger_idl__
-#define __it_guermandi_ext_easyb_logging_XOX_Logger_idl__
+#ifndef __eu_acca_esse_ext_lo_global_log_XOX_Logger_idl__
+#define __eu_acca_esse_ext_lo_global_log_XOX_Logger_idl__
 
-  module it { module guermandi { module ext { module easyb { module logging {
+module it { module acca_esse { module ext { module lo_global_log {
 
 	interface XOX_Logger
 	{
@@ -76,7 +76,7 @@
 
 	};
 
-  }; }; }; }; };
- 
+}; }; }; };
+
 #endif
 

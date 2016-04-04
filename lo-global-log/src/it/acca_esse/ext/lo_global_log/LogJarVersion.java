@@ -1,4 +1,4 @@
-package it.guermandi.ext.easyb.uno_types;
+package it.acca_esse.ext.lo_global_log;
 
 import java.io.IOException;
 import java.net.URI;
@@ -64,7 +64,7 @@ public class LogJarVersion {
 //            m_aLogger.log(e, false);
         }		
 	}
-	
+
 	public String getVersion() {
 		return m_aJarFileName+":    "+m_aJarVersion;
 	}
