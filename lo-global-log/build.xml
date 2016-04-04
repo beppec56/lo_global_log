@@ -25,7 +25,7 @@ ATTENTION:
 the default target must be removed
 
 -->
-<project name="lo-global-log" default="build-jar" basedir=".">
+<project name="lo_global_log" default="build-jar" basedir=".">
 	<property name="project_friendly_name" value="lo-global-log" />	
 	<property name="project_name" value="${project_friendly_name}-uno_types" />
 	<property name="extension_jar_file" value="${project_name}.uno.jar" />
@@ -161,6 +161,7 @@ the default target must be removed
 				<pathelement path="${lo_classes}/jut.jar" />
 				<pathelement path="${lo_classes}/ridl.jar" />
 				<pathelement path="${lo_classes}/unoil.jar" />
+				<pathelement path="${basedir}/pre-built-type-classes" />
 			</classpath>
 			<compilerarg value="-Xlint:unchecked" />
 		</javac>
@@ -188,7 +189,7 @@ the default target must be removed
 		<!-- end of copy -->
 	</target>
 
-	<target name="build-jar" depends="compile" description="User target: generate the distribution">
+	<target name="build-jar" depends="compile" description="Default target: generate the distribution">
 		<exec dir="." executable="${git_revision_script}"
 	   		outputproperty="git.revision.number">
 	   	</exec>
@@ -199,16 +200,16 @@ the default target must be removed
 		<jar jarfile="${dist}/lib/${extension_jar_file}" basedir="${build}">
 			<!-- build the manifest file on-line -->
 			<manifest>
-				<attribute name="Built-By" value="https://forge.osor.eu/projects/ooo-xadessig-it" />
+				<attribute name="Built-By" value="http://www.acca-esse.it" />
 				<attribute name="Specification-Title" value="easyBrowse" />
 				<attribute name="Specification-Version" value="${spec_version}" />
-				<attribute name="Specification-Vendor" value="http://www.yacme.com" />
-				<attribute name="Implementation-Title" value="signature_component" />
+				<attribute name="Specification-Vendor" value="http://www.acca-esse.it" />
+				<attribute name="Implementation-Title" value="${project_name}" />
 				<attribute name="Implementation-Version" value="${TODAY}, Vers. ${version}-${git.revision.number}" />
-				<attribute name="Implementation-Vendor" value="http://www.yacme.com" />
+				<attribute name="Implementation-Vendor" value="http://www.acca-esse.it" />
 				<attribute name="Ant-Version" value="${ant.version}" />
 				<attribute name="UNO-Type-Path" value="" />
-				<attribute name="RegistrationClassName" value="" />
+				<attribute name="RegistrationClassName" value="it.acca_esse.ext.lo_global_log.RegisterServices" />
 				<attribute name="Class-Path" value="" />
 			</manifest>
 		</jar>
