@@ -97,7 +97,7 @@ build-extension
 	<property name="extension_dir" location="extension" />
 	<property name="extension_dest_dir" location="build" />
 	<property name="extension_file" value="${project_name}.oxt" />
-	<property name="extension_jar_file" value="${project_name}.jar" />
+	<property name="extension_jar_file" value="${project_friendly_name}.jar" />
 	<property name="readme_it" value="release-notes_it.txt" />
 	<property name="readme_en" value="release-notes_en.txt" />
 	<!-- directory to zip for archive -->
@@ -148,8 +148,16 @@ build-extension
 		<delete dir="${extension_dest_dir}" />
 		<mkdir dir="${extension_dest_dir}" />
 
-		<copy file="${basedir}/../${uno_types_dir}/lib/${uno_types_jar}" todir="${extension_dest_dir}" />
+		
 		<copy file="${basedir}/../${uno_types_rdb_dir}/${uno_types_rdb}" todir="${extension_dest_dir}" />
+		<copy file="${basedir}/../${uno_types_dir}/lib/${uno_types_jar}" todir="${extension_dest_dir}" />
+
+		<!--
+			ATTENTION: doplicate the uno types jar, since it contains the component registration as well
+			hence, we need to have a different name in the extension manifest, to be able to register the same jar library as a component
+		-->
+		<copy file="${basedir}/../${uno_types_dir}/lib/${uno_types_jar}" tofile="${extension_dest_dir}/${extension_jar_file}" />
+
 		<!--copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_jar}" todir="${extension_dest_dir}" / -->
 
 		<!--beppec56 Copy Apache's xerces libraries -->
@@ -221,55 +229,6 @@ build-extension
 		<copy file="${license_dir}/third_parties/LICENSE_pkcs11_wrapper" tofile="${extension_dest_dir}/license/LICENSE_pkcs11_wrapper" / -->
 
 		<!-- copy the configuration files -->
-		<!-- copy Office/UI -->
-		<copy file="${extension_dir}${oui}/BaseWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/BaseWindowState.xcu">
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_conf_name}" />
-			</filterset >
-		</copy>
-		<copy file="${extension_dir}${oui}/BasicIDEWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/BasicIDEWindowState.xcu">
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_conf_name}" />
-			</filterset >
-		</copy>
-		<copy file="${extension_dir}${oui}/CalcWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/CalcWindowState.xcu">
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_conf_name}" />
-			</filterset >
-		</copy>
-		<copy file="${extension_dir}${oui}/DrawWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/DrawWindowState.xcu">
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_conf_name}" />
-			</filterset >
-		</copy>
-		<copy file="${extension_dir}${oui}/ImpressWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/ImpressWindowState.xcu">
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_conf_name}" />
-			</filterset >
-		</copy>
-		<copy file="${extension_dir}${oui}/MathWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/MathWindowState.xcu">
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_conf_name}" />
-			</filterset >
-		</copy>
-		<copy file="${extension_dir}${oui}/StartModuleWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/StartModuleWindowState.xcu">
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_conf_name}" />
-			</filterset >
-		</copy>
-		<copy file="${extension_dir}${oui}/WriterWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/WriterWindowState.xcu">
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_conf_name}" />
-			</filterset >
-		</copy>
 
 		<!-- main extension configuration files -->
 		<copy file="${extension_dir}/AddonConfiguration.xcs.xml" tofile="${extension_dest_dir}/AddonConfiguration.xcs">
@@ -284,28 +243,12 @@ build-extension
 				<filter token="NAME" value="${ext_conf_name}" />
 			</filterset >
 		</copy>
-		<copy file="${extension_dir}/AddonMessages.xcu.xml" tofile="${extension_dest_dir}/AddonMessages.xcu">
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_conf_name}" />
-				<filter token="JAVA_VERS" value="Java ${java_baseline}" />
-				<filter token="BUILD_TIME" value="${buildtime}" />				
-				<filter token="REVISION" value="${git.revision.number}" />
-			</filterset >
-		</copy>
 		<copy file="${extension_dir}/Addons.xcu.xml" tofile="${extension_dest_dir}/Addons.xcu" />
 		<filterset>
 			<filter token="WEBIDENTBASE" value="${webidentbase}" />
 			<filter token="NAME" value="${ext_conf_name}" />
 		</filterset >
-		<copy file="${extension_dir}/ProtocolHandler.xcu.xml" tofile="${extension_dest_dir}/ProtocolHandler.xcu" />
-		<filterset>
-			<filter token="WEBIDENTBASE" value="${webidentbase}" />
-			<filter token="NAME" value="${ext_conf_name}" />
-		</filterset >
 		
-		<copy file="${extension_dir}/easy_browse-main.components.xml" tofile="${extension_dest_dir}/easy_browse-main.components"/>
-
 		<!-- copy file="${extension_dir}/SynchronousJob.xcu.xml" tofile="${extension_dest_dir}/SynchronousJob.xcu" />
 		<filterset>
 			<filter token="WEBIDENTBASE" value="${webidentbase}" />

@@ -24,24 +24,7 @@
   <manifest:file-entry manifest:full-path="Addons.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
   <manifest:file-entry manifest:full-path="AddonConfiguration.xcs" manifest:media-type="application/vnd.sun.star.configuration-schema"/>
   <manifest:file-entry manifest:full-path="AddonConfiguration.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
-  <manifest:file-entry manifest:full-path="AddonMessages.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
-  <manifest:file-entry manifest:full-path="ProtocolHandler.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
-  <!-- disabled due to inconsistency in OOo interface, see: 
-       http://www.openoffice.org/issues/show_bug.cgi?id=96288
-       http://www.openoffice.org/issues/show_bug.cgi?id=96287
-  -->
-  <!-- manifest:file-entry manifest:full-path="DisableCommands.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/ -->
-  <!-- files for options dialog pages -->
-  <!-- manifest:file-entry manifest:full-path="OptionsDialog.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/ -->
-  <!-- manifest:file-entry manifest:full-path="Office/UI/StartModuleWindowState.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/> -->
-  <!-- manifest:file-entry manifest:full-path="Office/UI/BasicIDEWindowState.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/> -->
-  <!--  manifest:file-entry manifest:full-path="Office/UI/ImpressWindowState.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
-  <manifest:file-entry manifest:full-path="Office/UI/DrawWindowState.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
-  <manifest:file-entry manifest:full-path="Office/UI/CalcWindowState.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
-  <manifest:file-entry manifest:full-path="Office/UI/BaseWindowState.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
-  <manifest:file-entry manifest:full-path="Office/UI/WriterWindowState.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/ -->
-  <!-- manifest:file-entry manifest:full-path="Office/UI/MathWindowState.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/> -->
-  <manifest:file-entry manifest:full-path="easy_browse-uno_types.uno.rdb" manifest:media-type="application/vnd.sun.star.uno-typelibrary;type=RDB"/>
-  <manifest:file-entry manifest:full-path="easy_browse-uno_types.uno.jar" manifest:media-type="application/vnd.sun.star.uno-typelibrary;type=Java"/>
-  <manifest:file-entry manifest:full-path="easy_browse-main.components" manifest:media-type="application/vnd.sun.star.uno-components"/>
+  <manifest:file-entry manifest:full-path="lo_global_log.uno.rdb" manifest:media-type="application/vnd.sun.star.uno-typelibrary;type=RDB"/>
+  <manifest:file-entry manifest:full-path="lo_global_log.uno.jar" manifest:media-type="application/vnd.sun.star.uno-typelibrary;type=Java"/>
+  <manifest:file-entry manifest:full-path="lo_global_log.jar" manifest:media-type="application/vnd.sun.star.uno-component;type=Java"/>
 </manifest:manifest>
