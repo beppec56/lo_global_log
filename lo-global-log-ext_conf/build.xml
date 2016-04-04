@@ -1,0 +1,683 @@
+<!--
+    Copyright 2016 by ....
+
+	License type....
+-->
+
+<!--
+add comments here.........
+
+ATTENTION:
+the default target must be removed or adapted to the environment
+
+build-extension
+
+-->
+<project name="easy_browser" default="deploy-home" basedir=".">
+	<description>
+        build the easy_browser extension (main build).
+    </description>
+	<!-- set global properties for this build -->
+	<property name="project_name" value="easyBrowse" />
+	<property name="project_friendly_name" value="easy_browse" />
+	<property name="support_files" value="${project_friendly_name}-ext_conf" />
+	<property name="doc_dir" value="${basedir}/../${project_friendly_name}-doc" />
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+
+	<!-- buildnumber / -->
+	<!--
+		next line is to avoid "modified in the future" warning
+		may be is not needed for slower PC machine
+	-->
+	<!-- sleep milliseconds="2000" / -->
+
+	<!-- properties used when building/deploying the extension -->
+	<!-- version used to update the extension, displayed on LO interface and printed on the log files -->
+	<property name="version" value="0.1.0.0" />
+	<property name="longversion" value="${version}" />
+	<property name="spec_version" value="0.0.1" />
+
+	<echo>Java Version via Ant: ${ant.java.version}</echo>
+	<echo>Java Version System Prop: ${java.version}</echo> 
+	
+	<!-- Java baseline -->
+	<property name="java_baseline" value="Java v.${java.version}" />
+	<!-- compile time -->
+	<tstamp>
+	      <format property="buildtime" pattern="yyyy-MM-dd HH:mm:ss" offset="0" unit="hour"/>
+	</tstamp>
+	<property name="webidentbase" value="it.guermandi.ext" />
+	<!-- BEGIN OF local (intranet you may change them to suit you) web properties -->
+	<property name="webhost" value="http://192.168.1.40" />
+	<property name="webpath" value="w2/acca-esse.it/dwnld/lo/extensions" />
+	<property name="copywebpath" value="/var/www/${webpath}" />
+	<!-- END OF local (intranet you may change them to suit you) web properties -->
+	<property name="webpath_prj_it" value="http://www.acca-esse.it/it" />
+	<property name="webpath_prj_en" value="http://www.acca-esse.it/en" />
+
+	<echo message="${project_name}: platform specific file is: build.${os.name}-${os.arch}.properties."/>
+	<available file="build.${os.name}-${os.arch}.properties" type="file" property="properties_file.available" value="false" />
+	<property file="build.${os.name}-${os.arch}.properties" />
+
+	<!-- minimum LO version -->
+	<property name="lominversion" value="5.0" />
+
+	<!-- base name of the extension file -->
+	<property name="ext_name" value="${project_friendly_name}" />
+
+	<!-- base name of the extension file used in configuration -->
+	<property name="ext_conf_name" value="easyb" />
+
+	<!-- web repository subdirectory -->
+	<property name="wbme" value="${ext_name}" />
+
+	<!--
+		==========================================================
+		WARNING:
+		in case the properties:
+		${webidentbase}
+		${ext_conf_name}
+		are modified, change the value in constant:
+		com.yacme.ext.xades.ooo.GlobConstant.m_sEXT_NAME
+		accordingly, otherwise the configuration management inside the
+		extension won't work anymore.
+		==========================================================
+	-->
+	<!-- extension subdirectories -->
+	<property name="ico" value="/icons" />
+	<property name="img" value="/images" />
+	<property name="meta" value="/META-INF" />
+	<property name="oui" value="/Office/UI" />
+	<property name="pdesc" value="/pkg-desc" />
+	<property name="lic" value="/registration" />
+	<property name="option_gui" value="/dialogs" />
+
+	<property name="extension_dir" location="extension" />
+	<property name="extension_dest_dir" location="build" />
+	<property name="extension_file" value="${project_name}.oxt" />
+	<property name="extension_jar_file" value="${project_name}.jar" />
+	<property name="readme_it" value="release-notes_it.txt" />
+	<property name="readme_en" value="release-notes_en.txt" />
+	<!-- directory to zip for archive -->
+	<property name="archr" location="../to-be-zipped" />
+	<property name="tar_dest" location="../tgz-files" />
+	<property name="arch" location="${archr}/${project_name}-${version}" />
+	<property name="archv" location="${archr}/${project_name}-${version}-${build.number}" />
+
+	<property name="doc_dir" value="doc"/>
+	<property name="license_dir" value="${doc_dir}/licenses"/>
+	<property name="third_party_license" value="${license_dir}/third_parties"/>
+
+	<property name="uno_types" value="${project_friendly_name}-uno_types"/>
+	<property name="uno_types_dir" value="${uno_types}/dist"/>
+	<property name="uno_types_jar" value="${uno_types}.uno.jar"/>
+	<property name="uno_types_rdb_dir" value="${uno_types}/pre-built-type-rdb"/>
+	<property name="uno_types_rdb" value="${uno_types}.uno.rdb"/>
+
+	<property name="easyb_main_comp" value="${project_friendly_name}-main"/>
+	<property name="easyb_main_comp_dir" value="${easyb_main_comp}/dist"/>
+	<property name="easyb_main_comp_jar" value="${easyb_main_comp}.uno.jar"/>
+	<!-- ROB set BC libs names -->
+
+	<!-- Apache's xerces libraries -->
+	<property name="easyb_main_comp_comm_log_api" value="commons-logging-api-1.1.jar"/>
+	<property name="easyb_main_comp_comm_log" value="commons-logging-1.1.jar"/>
+	<property name="easyb_main_comp_xalan" value="xalan-2.7.1.jar"/>
+	<property name="easyb_main_comp_serialize" value="serializer-2.7.1.jar"/>
+	<property name="easyb_main_comp_xerces_impl" value="xercesImpl-2.9.1.jar"/>
+	<property name="easyb_main_comp_xml_apis" value="xml-apis-1.3.03.jar"/>
+	<property name="easyb_main_comp_xmlsec" value="xmlsec-1.4.4.jar"/>
+
+	<property name="easyb_main_comp" value="${project_friendly_name}-main"/>
+	<property name="easyb_main_comp_dir" value="${easyb_main_comp}/dist"/>
+	<property name="easyb_main_comp_jar" value="${easyb_main_comp}.uno.jar"/>
+
+	<!-- property name="sing_comp" value="${project_friendly_name}-sing_var_uno"/>
+	<property name="sing_comp_dir" value="${sing_comp}/dist"/>
+	<property name="sing_comp_jar" value="${sing_comp}.uno.jar"/>
+
+
+	<property name="job_comp" value="${project_friendly_name}-sjob_uno"/>
+	<property name="job_comp_dir" value="${job_comp}/dist"/>
+	<property name="job_comp_jar" value="${job_comp}.uno.jar"/ -->
+
+	<!-- specific custom part for Italian implementation -->
+	<!-- property name="cust_it_uno" value="${project_friendly_name}-custom_it"/>
+	<property name="cust_it_uno_dir" value="${cust_it_uno}/dist"/>
+	<property name="cust_it_uno_jar" value="${cust_it_uno}.uno.jar"/ -->
+	<!-- end specifica Italian subproject definition -->
+
+	<target name="build-jar" description="generate the subproject jars">
+
+		<echo>======== *** =========</echo>
+		<subant target="build-jar">
+			<property name="version" value="${version}"/>
+			<property name="spec_version" value="${spec_version}"/>
+			<filelist dir="${basedir}/../">
+				<file name="${easyb_main_comp}/build.xml" />
+			</filelist>
+		</subant>
+
+	</target>
+
+	<target name="prepare-extension" depends="build-jar" description="copy the jar to the extension and builds the extension package">
+
+		<echo message="======== *** ========="/>
+		<echo message="Fetching last git revision..."/>
+		<exec dir="." executable="${git_revision_script}"
+	   		outputproperty="git.revision.number">
+	   	</exec>
+
+		<echo>The current release is ${git.revision.number}</echo>
+
+		<!-- prepare first component jar -->
+		<!--- begin subtask -->
+
+		<!-- make dest dir -->
+		<echo>Now prepare extension stuff</echo>
+
+		<delete dir="${extension_dest_dir}" />
+		<mkdir dir="${extension_dest_dir}" />
+
+		<copy file="${basedir}/../${uno_types_dir}/lib/${uno_types_jar}" todir="${extension_dest_dir}" />
+		<copy file="${basedir}/../${uno_types_rdb_dir}/${uno_types_rdb}" todir="${extension_dest_dir}" />
+		<!--copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_jar}" todir="${extension_dest_dir}" / -->
+
+		<!--beppec56 Copy Apache's xerces libraries -->
+		<!-- copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_comm_log_api}" todir="${extension_dest_dir}" />
+		<copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_comm_log}" todir="${extension_dest_dir}" />
+		<copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_xalan}" todir="${extension_dest_dir}" />
+		<copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_serialize}" todir="${extension_dest_dir}" />
+		<copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_xerces_impl}" todir="${extension_dest_dir}" />
+		<copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_xml_apis}" todir="${extension_dest_dir}" />
+		<copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_xmlsec}" todir="${extension_dest_dir}" / -->
+
+		<!-- the main jar files -->
+		<copy file="${basedir}/../${easyb_main_comp_dir}/lib/${easyb_main_comp_jar}" todir="${extension_dest_dir}" />
+
+		<!-- -->
+		<copy todir="${extension_dest_dir}${ico}" >
+			<!-- the icons files -->
+			<fileset dir="${extension_dir}${ico}">
+				<include name="**/signet_11x16_*.bmp" />
+			</fileset>
+		</copy>
+
+		<!-- copy metafile -->
+		<copy todir="${extension_dest_dir}${meta}">
+			<fileset dir="${extension_dir}${meta}">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+
+		<copy todir="${extension_dest_dir}${pdesc}">
+			<fileset dir="${extension_dir}${pdesc}">
+				<include name="**/*.txt" />
+			</fileset>
+			<filterset>
+				<filter token="JAVA_VERS" value="${java_baseline}" />
+				<filter token="BUILD_TIME" value="${buildtime}" />
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="REVISION" value="${git.revision.number}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+
+		<copy todir="${extension_dest_dir}${lic}">
+			<fileset dir="${extension_dir}${lic}">
+				<include name="**/*.txt" />
+			</fileset>
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+
+		<copy todir="${extension_dest_dir}${lic}">
+			<fileset dir="${license_dir}">
+				<include name="**/*.txt" />
+			</fileset>
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+
+		<!-- copy todir="${extension_dest_dir}${option_gui}">
+			<fileset dir="${extension_dir}${option_gui}">
+				<include name="**/*.xdl" />
+				<include name="**/*.properties" />
+			</fileset>
+		</copy -->
+
+		<!-- prepare configuration files -->
+		<!-- copy licenses from documentation project -->
+		<copy file="${license_dir}/EUPL v.1.1 - Preamble.pdf" tofile="${extension_dest_dir}/license/EUPL v.1.1 - Preamble.pdf" />
+		<copy file="${license_dir}/EUPL v.1.1 - Licence.pdf" tofile="${extension_dest_dir}/license/EUPL v.1.1 - Licence.pdf" />
+		<copy file="${license_dir}/EUPL v.1.1 - Preambolo.pdf" tofile="${extension_dest_dir}/license/EUPL v.1.1 - Preambolo.pdf" />
+		<copy file="${license_dir}/EUPL v.1.1 - licenza.pdf" tofile="${extension_dest_dir}/license/EUPL v.1.1 - licenza.pdf" />		
+		<copy file="${license_dir}/GPL v3.0-license.odt" tofile="${extension_dest_dir}/license/GPL v3.0-license.odt" />
+
+		<!-- copy third parties licenses (if needed) -->
+		<!-- copy file="${license_dir}/third_parties/LICENSE_pcsc10_wrapper" tofile="${extension_dest_dir}/license/LICENSE_pcsc10_wrapper" />
+		<copy file="${license_dir}/third_parties/LICENSE_pkcs11_wrapper" tofile="${extension_dest_dir}/license/LICENSE_pkcs11_wrapper" / -->
+
+		<!-- copy the configuration files -->
+		<!-- copy Office/UI -->
+		<copy file="${extension_dir}${oui}/BaseWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/BaseWindowState.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}${oui}/BasicIDEWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/BasicIDEWindowState.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}${oui}/CalcWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/CalcWindowState.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}${oui}/DrawWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/DrawWindowState.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}${oui}/ImpressWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/ImpressWindowState.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}${oui}/MathWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/MathWindowState.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}${oui}/StartModuleWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/StartModuleWindowState.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}${oui}/WriterWindowState.xcu.xml" tofile="${extension_dest_dir}${oui}/WriterWindowState.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+
+		<!-- main extension configuration files -->
+		<copy file="${extension_dir}/AddonConfiguration.xcs.xml" tofile="${extension_dest_dir}/AddonConfiguration.xcs">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}/AddonConfiguration.xcu.xml" tofile="${extension_dest_dir}/AddonConfiguration.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}/AddonMessages.xcu.xml" tofile="${extension_dest_dir}/AddonMessages.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+				<filter token="JAVA_VERS" value="Java ${java_baseline}" />
+				<filter token="BUILD_TIME" value="${buildtime}" />				
+				<filter token="REVISION" value="${git.revision.number}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}/Addons.xcu.xml" tofile="${extension_dest_dir}/Addons.xcu" />
+		<filterset>
+			<filter token="WEBIDENTBASE" value="${webidentbase}" />
+			<filter token="NAME" value="${ext_conf_name}" />
+		</filterset >
+		<copy file="${extension_dir}/ProtocolHandler.xcu.xml" tofile="${extension_dest_dir}/ProtocolHandler.xcu" />
+		<filterset>
+			<filter token="WEBIDENTBASE" value="${webidentbase}" />
+			<filter token="NAME" value="${ext_conf_name}" />
+		</filterset >
+		
+		<copy file="${extension_dir}/easy_browse-main.components.xml" tofile="${extension_dest_dir}/easy_browse-main.components"/>
+
+		<!-- copy file="${extension_dir}/SynchronousJob.xcu.xml" tofile="${extension_dest_dir}/SynchronousJob.xcu" />
+		<filterset>
+			<filter token="WEBIDENTBASE" value="${webidentbase}" />
+			<filter token="NAME" value="${ext_name}" />
+		</filterset >
+		<copy file="${extension_dir}/DisableCommands.xcu.xml" tofile="${extension_dest_dir}/DisableCommands.xcu" >
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_name}" />
+			</filterset >
+		</copy>
+		<copy file="${extension_dir}/OptionsDialog.xcu.xml" tofile="${extension_dest_dir}/OptionsDialog.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_name}" />
+			</filterset >
+		</copy -->
+
+		<!--- end of subtask -->
+	</target>
+
+	<!-- dependency of description.xml from build number -->
+	<dependset>
+		<srcfilelist dir="${basedir}" files="build.number" />
+		<targetfilelist dir="${extension_dest_dir}" files="description.xml" />
+	</dependset>
+
+	<!-- target: build-extension -->
+	<target name="build-extension" depends="prepare-extension" description="copy the jar to the extension">
+		<!-- prepare the file description.xml, from src-description.xml, changing tokens -->
+		<copy file="${extension_dir}/src-description.xml" tofile="${extension_dest_dir}/description.xml">
+			<filterset>
+				<filter token="VERSION" value="${longversion}" />
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+				<filter token="LOMINVER" value="${lominversion}" />
+				<filter token="WEBHOST" value="${webhost}" />
+				<filter token="WEBPATH" value="${webpath}" />
+				<filter token="WEBPATHPRJ" value="${webpath_prj}" />
+				<filter token="WBME" value="${wbme}" />
+			</filterset >
+		</copy>
+
+		<zip basedir="${extension_dest_dir}" destfile="${extension_file}" />
+	</target>
+
+	<!-- -->
+
+	<!-- target name="deploy-home" depends="clean, prepare-extension" description="deploy extension in user's home directory" -->
+	<target name="deploy-home" depends="prepare-extension" description="deploy extension in user's home directory">
+		<!-- prepare the file description.xml, from src-description.xml, changing tokens -->
+		<copy file="${extension_dir}/src-description.xml" tofile="${extension_dest_dir}/description.xml">
+			<filterset>
+				<filter token="VERSION" value="${longversion}" />
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+				<filter token="LOMINVER" value="${lominversion}" />
+				<filter token="WEBHOST" value="${webhost}" />
+				<filter token="WEBPATH" value="${webpath}" />
+				<filter token="WEBPATHPRJ_EN" value="${webpath_prj_en}" />
+				<filter token="WEBPATHPRJ_IT" value="${webpath_prj_it}" />
+				<filter token="WBME" value="${wbme}" />
+			</filterset >
+		</copy>
+
+		<zip basedir="${extension_dest_dir}" destfile="${extension_file}" />
+
+		<!-- the following line is to simplify the first add of the extension (disable if not needed) -->
+		<copy file="${extension_file}" todir="${user.home}" />
+	</target>
+
+	<target name="deploy-web-local" depends="deploy-home" description="deploy extension in local intranet: http://192.168.3.6">
+		<!-- prepare the file description.xml, from src-description.xml, changing tokens -->
+		<copy file="${extension_dir}/src-description.xml" tofile="${extension_dest_dir}/description.xml">
+			<filterset>
+				<filter token="VERSION" value="${longversion}" />
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+				<filter token="LOMINVER" value="${lominversion}" />
+				<filter token="WEBHOST" value="${webhost}" />
+				<filter token="WEBPATH" value="${webpath}" />
+				<filter token="WEBPATHPRJ" value="${webpath_prj}" />
+				<filter token="WBME" value="${wbme}" />
+			</filterset >
+		</copy>
+
+		<zip basedir="${extension_dest_dir}" destfile="${extension_file}" />
+
+		<mkdir dir="${copywebpath}/${wbme}" />
+		<!-- to avoid "modified in the future" warning -->
+		<sleep milliseconds="900" />
+		<dependset>
+			<srcfilelist dir="${extension_dest_dir}" files="description.xml" />
+			<targetfilelist dir="${copywebpath}/${wbme}" files="${ext_name}.update.xml" />
+		</dependset>
+
+		<copy file="${extension_dir}/src-update.xml" tofile="${copywebpath}/${wbme}/${ext_name}.update.xml">
+			<filterset>
+				<filter token="VERSION" value="${longversion}" />
+				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+				<filter token="WEBHOST" value="${webhost}" />
+				<filter token="WEBPATH" value="${webpath}" />
+				<filter token="WEBPATHPRJ_EN" value="${webpath_prj_en}" />
+				<filter token="WEBPATHPRJ_IT" value="${webpath_prj_it}" />
+				<filter token="WBME" value="${wbme}" />
+			</filterset >
+		</copy>
+
+		<copy file="${extension_file}" tofile="${copywebpath}/${wbme}/${extension_file}" />
+		<!-- copy realease description files -->
+		<copy file="${extension_dir}/${readme_en}" tofile="${copywebpath}/${wbme}/${readme_en}" />
+		<copy file="${extension_dir}/${readme_it}" tofile="${copywebpath}/${wbme}/${readme_it}" />
+
+	</target>
+
+	<!-- cleans all, reverse order wrt build -->
+	<target name="clean" description="clean up the project">
+
+		<!-- start clean Italian specific part -->
+		<echo>======== *** =========</echo>
+		<subant target="clean">
+			<filelist dir="${basedir}/../">
+				<file name="${easyb_main_comp}/build.xml" />
+			</filelist>
+		</subant>
+
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<!-- delete dir="${archr}" />
+		<delete dir="${build}" />
+		<delete dir="${dist}" / -->
+		<delete dir="${extension_dest_dir}" />
+	</target>
+
+	<target name="build-uno-tooling-classes-and-jar" description="Internal task, do not use !">
+		<echo>======== *** =========</echo>
+		  <subant target="prebuild">
+			<property name="version" value="${version}"/>
+			<property name="spec_version" value="${spec_version}"/>
+			<filelist dir="${basedir}/../">
+				<file name="${uno_types}/build.xml" />
+			</filelist>
+		</subant>
+
+		<echo>======== *** =========</echo>
+		<!-- disabled, always built manually -->
+		  <subant target="build-jar">
+			<property name="version" value="${version}"/>
+			<property name="spec_version" value="${spec_version}"/>
+			<filelist dir="${basedir}/../">
+				<file name="${uno_types}/build.xml" />
+			</filelist>
+		</subant>
+	</target>
+
+	<target name="build-uno-jar-with-sdk" depends="build-uno-tooling-classes-and-jar" description="Generate the subproject for the new uno objects. You need the sdk installed and able to compile idl files !">
+
+	</target>
+
+	<!-- target name="build-arch-sub" depends="clean,build-extension" description="aux target to build the zip archive of the project" -->
+	<target name="build-arch-sub" depends="clean" description="NOTE: broken target! - aux target to build the zip archive of the project">
+		<delete dir="${arch}" />
+		<mkdir dir="${arch}" />
+		<!-- copy src files -->
+		<copy todir="${arch}/${sig_comp}">
+			<fileset dir="${basedir}/../${sig_comp}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<copy todir="${arch}/${job_comp}">
+			<fileset dir="${basedir}/../${job_comp}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<!-- copy extension specific files -->
+		<copy todir="${arch}/${support_files}/extension">
+			<fileset dir="${extension_dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<!-- copy images work directory -->
+		<copy todir="${arch}/${support_files}/images-working-area">
+			<fileset dir="${extension_dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<!-- delete file="${arch}/${support_files}/extension/${extension_jar_file}" / -->
+
+		<copy todir="${arch}/${support_files}/extension">
+			<filelist dir="${extension_dir}">
+				<file name="src-description.xml" />
+				<file name="src-update.xml" />
+				<file name="release-notes_it.txt" />
+				<file name="release-notes_en.txt" />
+				<file name="AddonConfiguration.xcs.xml"/>
+				<file name="AddonConfiguration.xcu.xml"/>
+				<file name="AddonMessages.xcu.xml"/>
+				<file name="Addons.xcu.xml"/>
+				<file name="ProtocolHandler.xcu.xml"/>
+				<file name="SynchronousJob.xcu.xml"/>
+				<file name="AsynchronousJob.xcu.xml"/>
+				<file name="DisableCommands.xcu.xml"/>
+			</filelist>
+		</copy>
+
+		<copy file="${basedir}/localization-master.ods" tofile="${arch}/${support_files}/localization-master.ods" />
+		<copy file="${basedir}/COPYING" tofile="${arch}/${support_files}/COPYING" />
+		<copy file="${basedir}/README" tofile="${arch}/${support_files}/README" />
+		<copy file="${basedir}/build.xml" tofile="${arch}/${support_files}/build.xml" />
+		<copy file="${basedir}/build.number" tofile="${arch}/${support_files}/build.number" />
+		<copy file="${basedir}/${extension_file}" tofile="${arch}/${support_files}/${extension_file}" />
+
+		<!-- copy documentation files -->
+		<copy todir="${arch}/doc/">
+			<fileset dir="${doc_dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="${tar_dest}"/>
+		<zip basedir="${archr}" destfile="${tar_dest}/${project_name}-${version}.zip" />
+		<!-- tar basedir="${archr}" destfile="${tar_dest}/${project_name}-${version}.tar"/ -->
+	</target>
+
+	<target name="build-arch-zip" depends="build-arch-sub"  description="build the zip archive of the project, only versioning">
+
+		<!-- bzip2 src="${tar_dest}/${project_name}-${version}.tar" destfile="${tar_dest}/${project_name}-${version}.tar.bz2" / -->
+		<delete file="${tar_dest}/${project_name}-${version}.tar" />
+
+		<delete dir="${archr}" />
+	</target>
+
+	<target name="generate-javadoc" description="prepare the javadoc of all the projects but oxsit-uno_types">
+
+		<!--
+		add a new html-no-svn directory
+
+		then it builds, using javadoc the documentation
+
+		made for Linux only, -->
+		<echo message="${cust_it_uno}/src" />
+
+	    <javadoc
+	        excludepackagenames="org.test.supercsv.mock"
+	           	destdir="html-no-svn"
+	           	author="true"
+	           	version="true"
+	           	use="true"
+	    		linksource="true"
+	           	windowtitle="XAdES signature for Apache OpenOffice"
+	       >
+
+	        <fileset dir="${basedir}/../${cust_it_uno}/src" defaultexcludes="yes" >
+	            <include name="**/*.java"/>
+	        </fileset>
+	        <fileset dir="${basedir}/../${sig_options_comp}/src" defaultexcludes="yes" >
+	            <include name="**/*.java"/>
+	            <!-- exclude name="org/test/**/*.java" / -->
+	        </fileset>
+	        <fileset dir="${basedir}/../${sig_comp}/src" defaultexcludes="yes" >
+	            <include name="**/*.java"/>
+	        </fileset>
+	        <fileset dir="${basedir}/../${sing_comp}/src" defaultexcludes="yes" >
+	            <include name="**/*.java"/>
+	        </fileset>
+	        <fileset dir="${basedir}/../${job_comp}/src" defaultexcludes="yes" >
+	            <include name="**/*.java"/>
+	        </fileset>
+
+			<!-- just a test: point to a live AOO compiled source tree
+				enabling this will merged in part of the AOO Java API documentation -->	    	
+	        <!-- fileset dir="/home/beppe/aoo-b/aoo-git-svn/main/odk/unxlngx6.pro/misc/java_src" defaultexcludes="yes" -->
+	            <!-- include name="**/*.java"/ -->
+	        <!-- /fileset -->
+
+	    	<!-- if you don't have the openjdk 6 installed, enable this link for Java runtime API documentation -->
+	    	<!-- link href="http://docs.oracle.com/javase/6/docs/api/"/ -->
+
+	    	<!--
+	    		the following link can be used in Ubuntu 10.04 when opnejdk-6-jdk packet is installed
+	    		it will be there if the jdk is installed
+	    	-->
+	    	<link href="/usr/share/doc/openjdk-6-jdk/api/"/>
+
+	    	<!-- classes used in lo interface -->
+	    	<classpath>
+		  <fileset dir="${lo_classes}">
+		    <include name="*.jar"/>
+		  </fileset>
+    		</classpath>
+
+	    	<!-- DOES NOT WORK !
+	    	link href="${ooosdk}/docs/common/ref/" /
+
+	    	the AOO odk doc is differently packaged.
+
+	    	-->
+
+	    	<!--
+		    	this link is there if you ave the LO sdk installed.
+	    	 -->
+	    	<link href="${losdk}/docs/java/ref/" />
+
+	        <tag name="preconditions" scope="all" description="Precondition:"/>
+	        <tag name="postconditions" scope="all" description="Postcondition:"/>
+	        <tag name="invariants" scope="all" description="Invariant:"/>
+	        <!-- tag name="copyright" scope="all" description="Copyright:"/ -->
+	    </javadoc>
+	</target>
+
+	<!-- target name="build-arch" depends="build-arch-sub"  description="build the tar.bz2 archive of the project, only versioning">
+
+		<bzip2 src="${tar_dest}/${project_name}-${version}.tar" destfile="${tar_dest}/${project_name}-${version}.tar.bz2" />
+		<delete file="${tar_dest}/${project_name}-${version}.tar" />
+
+		<delete dir="${archr}" />
+	</target -->
+
+	<!-- target name="build-arch-v" depends="build-arch-sub"  description="build the tar.bz2 archive of the project, versioning + build number">
+
+		<bzip2 src="${tar_dest}/${project_name}-${version}.tar" destfile="${tar_dest}/${project_name}-${version}-${build.number}.tar.bz2" />
+		<delete file="${tar_dest}/${project_name}-${version}.tar" />
+
+		<delete dir="${archr}" />
+	</target -->
+</project>
+

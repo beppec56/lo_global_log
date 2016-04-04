@@ -2,5 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="/opt/libreoffice5.1/program/classes/juh.jar"/>
+	<classpathentry kind="lib" path="/opt/libreoffice5.1/program/classes/jurt.jar"/>
+	<classpathentry kind="lib" path="/opt/libreoffice5.1/program/classes/ridl.jar"/>
+	<classpathentry kind="lib" path="/opt/libreoffice5.1/program/classes/unoil.jar"/>
+	<classpathentry kind="lib" path="/opt/libreoffice5.1/program/classes/unoloader.jar"/>
+	<classpathentry kind="lib" path="dist/lib/lo-global-log-uno_types.uno.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
