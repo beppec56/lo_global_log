@@ -116,10 +116,6 @@ build-extension
 	<property name="uno_types_rdb_dir" value="${uno_types}/pre-built-type-rdb"/>
 	<property name="uno_types_rdb" value="${uno_types}.uno.rdb"/>
 
-	<!-- property name="easyb_main_comp" value="${project_friendly_name}-main"/>
-	<property name="easyb_main_comp_dir" value="${easyb_main_comp}/dist"/>
-	<property name="easyb_main_comp_jar" value="${easyb_main_comp}.uno.jar"/ -->
-
 	<target name="build-jar" description="generate the subproject jars">
 
 		<echo>======== *** =========</echo>
@@ -164,17 +160,6 @@ build-extension
 		<copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_xerces_impl}" todir="${extension_dest_dir}" />
 		<copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_xml_apis}" todir="${extension_dest_dir}" />
 		<copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_xmlsec}" todir="${extension_dest_dir}" / -->
-
-		<!-- the main jar files -->
-		<copy file="${basedir}/../${easyb_main_comp_dir}/lib/${easyb_main_comp_jar}" todir="${extension_dest_dir}" />
-
-		<!-- -->
-		<copy todir="${extension_dest_dir}${ico}" >
-			<!-- the icons files -->
-			<fileset dir="${extension_dir}${ico}">
-				<include name="**/signet_11x16_*.bmp" />
-			</fileset>
-		</copy>
 
 		<!-- copy metafile -->
 		<copy todir="${extension_dest_dir}${meta}">

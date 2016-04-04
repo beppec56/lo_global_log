@@ -1,5 +1,5 @@
-easyBrowse
+LoGlobalLog
 (@WEBIDENTBASE@.@NAME@)
 Licensed under ?????
-Copyright (c) 2016 ??
+Copyright (c) 2016 Giuseppe Castagno
 Built on @BUILD_TIME@ Rev. @REVISION@

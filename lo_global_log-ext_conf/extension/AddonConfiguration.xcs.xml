@@ -22,17 +22,10 @@
 	xmlns:oor="http://openoffice.org/2001/registry"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<templates>
-		<group oor:name="Message">
-			<prop oor:name="Text" oor:type="xs:string" oor:localized="true"/>
-		</group>
-		<!-- group oor:name="FileResource">
-			<prop oor:name="Url" oor:type="xs:string" oor:localized="true"/>
-		</group -->
-	</templates>
+	<templates/>
 	<component>
 		<!-- In LO the following is accessed as a node  -->
-		<group oor:name="EasyBrowseOptionsParameters">
+		<group oor:name="GlobalLogOptionsParameters">
 			<info>
 				<author>Giuseppe Castagno (aka beppec56)</author>
 				<desc></desc>
@@ -76,7 +69,7 @@
 			<prop oor:name="FileRotationCount" oor:type="xs:int">
 				<info>
 					<author>beppec56</author>
-					<desc>maximum number of filepresent atthe same time. Minimum 1 maximum 100</desc>
+					<desc>maximum number of file present at the same time. Minimum 1 maximum 100</desc>
 				</info>
 				<constraints>
 					<minInclusive oor:value="1">
@@ -113,7 +106,5 @@
 			</prop>
 			<!-- end of logging properties -->
 		</group>
-		<!-- In LO the following is accessed as a node  -->
-		<set oor:name="Messages" oor:node-type="Message"/>
 	</component>
 </oor:component-schema>

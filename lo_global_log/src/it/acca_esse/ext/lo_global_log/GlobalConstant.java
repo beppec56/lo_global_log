@@ -2,26 +2,15 @@ package it.acca_esse.ext.lo_global_log;
 
 public class GlobalConstant {
 	
-	public static final String m_sWEBIDENTBASE = "it.guermandi.ext"; // extension owner, used in building it,
+	public static final String m_sWEBIDENTBASE = "it.acca-esse.ext"; // extension owner, used in building it,
 	// same name, same meaning in extension_conf_files/build.xml
-	public static final String m_sEXT_NAME ="easyb"; //name of the extension, used in configurations
+	public static final String m_sEXT_NAME ="lo_global_log"; //name of the extension, used in configurations
 			// same name, same meaning in extension_conf_files/build.xml
 	public static final String m_sEXTENSION_IDENTIFIER = m_sWEBIDENTBASE+"."+m_sEXT_NAME;
 	public static final String m_sEXTENSION_BASE_KEY = "/"+m_sWEBIDENTBASE+"."+ m_sEXT_NAME;
 	public static final String m_sEXTENSION_CONF_BASE_KEY = m_sEXTENSION_BASE_KEY+".Configuration/";
-
-	public static final String	m_sEASYBROWSE_PROTO_BASE_URL				= m_sEXTENSION_IDENTIFIER + ".lo.handlers.EasyBrowse:";
-
-//	object for help
-	public static final String	m_sON_HELP_ABOUT_PATH					= "HelpAbout";
-	public static final String	m_sON_HELP_ABOUT_PATH_COMPLETE			= m_sEASYBROWSE_PROTO_BASE_URL+m_sON_HELP_ABOUT_PATH;
-
-//	object for login dialog
-	public static final String	m_sEASYBROWSE_LOGIN_PATH					= "Login";
-	public static final String	m_sEASYBROWSE_LOGIN_PATH_COMPLETE			= m_sEASYBROWSE_PROTO_BASE_URL+m_sEASYBROWSE_LOGIN_PATH;
 	
-	
-	public static final String m_sEXTENSION_CONF_OPTIONS = m_sEXTENSION_CONF_BASE_KEY	+ "EasyBrowseOptionsParameters/";
+	public static final String m_sEXTENSION_CONF_OPTIONS = m_sEXTENSION_CONF_BASE_KEY	+ "GlobalLogOptionsParameters/";
 	
 	// Names used in configuration, the names are defined in file
 	// extension_conf_files/extension/AddonConfiguration.xcs.xml

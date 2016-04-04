@@ -1,5 +1,5 @@
-easyBrowser
+LoGlobalLog
 (@WEBIDENTBASE@.@NAME@)
 Concesso in licenza a norma della ???
-Copyright (c) 2016 ??
+Copyright (c) 2016 LoGlobalLog
 Compilato il @BUILD_TIME@ Rev. @REVISION@

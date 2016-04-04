@@ -22,7 +22,7 @@
 <oor:component-data oor:package="@WEBIDENTBASE@.@NAME@" oor:name="Configuration"
 	xmlns:oor="http://openoffice.org/2001/registry"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" >
-	<node oor:name="EasyBrowseOptionsParameters">
+	<node oor:name="GlobalLogOptionsParameters">
 		<!--
 			Default set in .xcs.xml configuration file 
 		-->
