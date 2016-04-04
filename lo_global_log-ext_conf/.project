@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>lo-global-log-ext_conf</name>
+	<name>lo_global_log-ext_conf</name>
 	<comment></comment>
 	<projects>
 		<project>lo-global-log</project>
