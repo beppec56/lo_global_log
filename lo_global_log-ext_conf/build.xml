@@ -13,13 +13,13 @@ the default target must be removed or adapted to the environment
 build-extension
 
 -->
-<project name="easy_browser" default="deploy-home" basedir=".">
+<project name="lo_global_logger" default="deploy-home" basedir=".">
 	<description>
         build the easy_browser extension (main build).
     </description>
 	<!-- set global properties for this build -->
-	<property name="project_name" value="easyBrowse" />
-	<property name="project_friendly_name" value="easy_browse" />
+	<property name="project_name" value="LoGlobalLog" />
+	<property name="project_friendly_name" value="lo_global_log" />
 	<property name="support_files" value="${project_friendly_name}-ext_conf" />
 	<property name="doc_dir" value="${basedir}/../${project_friendly_name}-doc" />
 	<property name="src" location="src" />
@@ -48,7 +48,7 @@ build-extension
 	<tstamp>
 	      <format property="buildtime" pattern="yyyy-MM-dd HH:mm:ss" offset="0" unit="hour"/>
 	</tstamp>
-	<property name="webidentbase" value="it.guermandi.ext" />
+	<property name="webidentbase" value="it.acca-esse.ext" />
 	<!-- BEGIN OF local (intranet you may change them to suit you) web properties -->
 	<property name="webhost" value="http://192.168.1.40" />
 	<property name="webpath" value="w2/acca-esse.it/dwnld/lo/extensions" />
@@ -68,7 +68,7 @@ build-extension
 	<property name="ext_name" value="${project_friendly_name}" />
 
 	<!-- base name of the extension file used in configuration -->
-	<property name="ext_conf_name" value="easyb" />
+	<property name="ext_conf_name" value="lo_global_log" />
 
 	<!-- web repository subdirectory -->
 	<property name="wbme" value="${ext_name}" />
@@ -110,44 +110,15 @@ build-extension
 	<property name="license_dir" value="${doc_dir}/licenses"/>
 	<property name="third_party_license" value="${license_dir}/third_parties"/>
 
-	<property name="uno_types" value="${project_friendly_name}-uno_types"/>
+	<property name="uno_types" value="${project_friendly_name}"/>
 	<property name="uno_types_dir" value="${uno_types}/dist"/>
 	<property name="uno_types_jar" value="${uno_types}.uno.jar"/>
 	<property name="uno_types_rdb_dir" value="${uno_types}/pre-built-type-rdb"/>
 	<property name="uno_types_rdb" value="${uno_types}.uno.rdb"/>
 
-	<property name="easyb_main_comp" value="${project_friendly_name}-main"/>
+	<!-- property name="easyb_main_comp" value="${project_friendly_name}-main"/>
 	<property name="easyb_main_comp_dir" value="${easyb_main_comp}/dist"/>
-	<property name="easyb_main_comp_jar" value="${easyb_main_comp}.uno.jar"/>
-	<!-- ROB set BC libs names -->
-
-	<!-- Apache's xerces libraries -->
-	<property name="easyb_main_comp_comm_log_api" value="commons-logging-api-1.1.jar"/>
-	<property name="easyb_main_comp_comm_log" value="commons-logging-1.1.jar"/>
-	<property name="easyb_main_comp_xalan" value="xalan-2.7.1.jar"/>
-	<property name="easyb_main_comp_serialize" value="serializer-2.7.1.jar"/>
-	<property name="easyb_main_comp_xerces_impl" value="xercesImpl-2.9.1.jar"/>
-	<property name="easyb_main_comp_xml_apis" value="xml-apis-1.3.03.jar"/>
-	<property name="easyb_main_comp_xmlsec" value="xmlsec-1.4.4.jar"/>
-
-	<property name="easyb_main_comp" value="${project_friendly_name}-main"/>
-	<property name="easyb_main_comp_dir" value="${easyb_main_comp}/dist"/>
-	<property name="easyb_main_comp_jar" value="${easyb_main_comp}.uno.jar"/>
-
-	<!-- property name="sing_comp" value="${project_friendly_name}-sing_var_uno"/>
-	<property name="sing_comp_dir" value="${sing_comp}/dist"/>
-	<property name="sing_comp_jar" value="${sing_comp}.uno.jar"/>
-
-
-	<property name="job_comp" value="${project_friendly_name}-sjob_uno"/>
-	<property name="job_comp_dir" value="${job_comp}/dist"/>
-	<property name="job_comp_jar" value="${job_comp}.uno.jar"/ -->
-
-	<!-- specific custom part for Italian implementation -->
-	<!-- property name="cust_it_uno" value="${project_friendly_name}-custom_it"/>
-	<property name="cust_it_uno_dir" value="${cust_it_uno}/dist"/>
-	<property name="cust_it_uno_jar" value="${cust_it_uno}.uno.jar"/ -->
-	<!-- end specifica Italian subproject definition -->
+	<property name="easyb_main_comp_jar" value="${easyb_main_comp}.uno.jar"/ -->
 
 	<target name="build-jar" description="generate the subproject jars">
 
@@ -156,7 +127,7 @@ build-extension
 			<property name="version" value="${version}"/>
 			<property name="spec_version" value="${spec_version}"/>
 			<filelist dir="${basedir}/../">
-				<file name="${easyb_main_comp}/build.xml" />
+				<file name="${project_friendly_name}/build.xml" />
 			</filelist>
 		</subant>
 
