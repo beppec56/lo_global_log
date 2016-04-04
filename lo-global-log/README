@@ -1,0 +1,82 @@
+README of lo-global-log project
+====================================
+
+lo-global-log subproject needs the LibreOffice
+SDK in order to be built from scratch.
+
+Since the LO SDK dependent part changes slowly, this subproject has
+a prebuild for the objects needed as distribution item.
+
+The structure is as follows.
+
+src			the Java source directory, contains a simple class to return the version of the jar
+
+idl			contains the UNOIDL (idl type file) descriptions of the new interfaces
+			and related stuff (services, constants, enums...) declared for subsequent
+			UNO packaging.
+
+pre-built-type-classes
+			contains the *.class files generated through the OOo SDK procedure, not under svn control
+
+pre-built-type-rdb
+			contains the type library to be used with the Java classes in
+			pre-built-type-classes
+
+The build process is divided into two parts:
+
+1) the LO SDK part, where LO SDK is needed: use the target (project) prebuild in ant
+to perform this step; e.g.: ant prebuild.
+
+2) the standard part, where the jar library needed for the other subproject is built.
+In order for the part 1) to succeeded you need an LO SDK installed and configured.
+Then you need to change the platform specific file (e.g. build.Linux-i386.properties
+in GNU/Linux platform) to suit your installation.
+The file has comments that should enable you to understand the process.
+
+The steps needed to add a new interface or a new UNO component are the followings:
+
+1) describe the new element using UNO IDL language
+
+2) compile the new definition with idlc from ooo_sdk
+
+3) prepare the .rdb file containing the UNO registration information
+
+4) use javamaker to generated the new class declaring the interface
+
+5) using autodoc, generate the new UNO component html documentation
+
+6) build a jar Java archive containing the .class file so generated
+   this jar file is to be used as a referenced library in the subprojects
+   that will use the new UNO interfaces.
+   
+7) when installing the extension install both file, the .rdb AND the .jar.
+
+Step 1) is developer responsibility, using a text editor or Eclipse.
+
+Steps 2) 3) and 4) 5) are carried out by the ant target 'prebuild', it generates
+the documentation as well, using autodoc (as it's done in the OOo main build process),
+and putting the documentation in the directory 'html-no-svn'.
+The documentation is not (yet) under svn because of the automatic copyright note that
+autodoc adds at the end of every file.
+
+The main extension build has a specific target to build all what is needed.
+The target is build-uno-jar-with-sdk, but the OOo SDK must be installed and able to compile the
+IDL descriptions. 
+This target will carry out the step 6) above.
+
+The step 7) will be carried out by the main build implementation.
+
+A good help in writing UNOIDL specification file could be the IDL editor embedded in
+the Eclipse plug-in, the LOEclipse plugin can be installed directly from:
+
+http://...
+
+see:
+
+http://...
+
+for details on how it works.
+
+
+Please refer to the LO SDK installation instruction for details on how to install it.
+======================================================================================
