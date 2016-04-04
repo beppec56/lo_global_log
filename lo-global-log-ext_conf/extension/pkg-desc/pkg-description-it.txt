@@ -1,0 +1,5 @@
+easyBrowser
+(@WEBIDENTBASE@.@NAME@)
+Concesso in licenza a norma della ???
+Copyright (c) 2016 ??
+Compilato il @BUILD_TIME@ Rev. @REVISION@
