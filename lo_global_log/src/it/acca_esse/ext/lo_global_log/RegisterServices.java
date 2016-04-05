@@ -49,6 +49,10 @@ public class RegisterServices {
 					GlobalLogger.m_sImplementationName+ // the class implementing
 					"/UNO/SINGLETONS/"+	//fixed key reference
 					GlobalLogger.m_sServiceNames[0]); //
+			System.out.println("New singleton key: "+
+					GlobalLogger.m_sImplementationName+ // the class implementing
+					"/UNO/SINGLETONS/"+	//fixed key reference
+					GlobalLogger.m_sServiceNames[0]); //
 
 			newKey.setStringValue(GlobalLogger.m_sServiceNames[0]);
 			retGLogg = Factory.writeRegistryServiceInfo( GlobalLogger.m_sImplementationName, 

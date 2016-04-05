@@ -60,7 +60,7 @@ public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Log
 		//get configuration access, using standard registry functions
 		m_aLoggerConfigAccess = new LoggerParametersAccess(_ctx);
 
-		m_sName = GlobalConstant.m_sEXTENSION_IDENTIFIER;
+		m_sName = GlobalConstant.m_sGLOBALLOGEXTENSION_IDENTIFIER;
 		m_aLogger = Logger.getLogger(m_sName);
 		m_aLogger.setUseParentHandlers(false);//disables the console output of the root logger
 
@@ -134,7 +134,7 @@ public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Log
 //DEBUG		else	System.out.println("console logging NOT enabled");
 		
 		if(m_bEnableFileOutput) {
-			String sFileName = GlobalConstant.m_sEXTENSION_IDENTIFIER+".log";
+			String sFileName = GlobalConstant.m_sGLOBALLOGEXTENSION_IDENTIFIER+".log";
 			try {
 				if(m_sLogFilePath.length() > 0) {
 // e.g.: get the path separator, then scan the file path and change from whatever value to '/'
@@ -168,7 +168,7 @@ public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Log
 //FIXME: add a fall back to %HOME directory
 				try {
 
-					sFileName = "%h/"+GlobalConstant.m_sEXTENSION_IDENTIFIER+".log";
+					sFileName = "%h/"+GlobalConstant.m_sGLOBALLOGEXTENSION_IDENTIFIER+".log";
 					m_aLogFileHandl = new FileHandler( sFileName,m_nMaxFileSize,m_nFileRotationCount);
 					m_aLogFileHandl.setLevel(Level.FINEST);
 					m_aLogFileFormatter = new LocalLogFormatter();

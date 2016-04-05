@@ -2,12 +2,17 @@ package it.acca_esse.ext.lo_global_log;
 
 public class GlobalConstant {
 	
-	public static final String m_sWEBIDENTBASE = "it.acca-esse.ext"; // extension owner, used in building it,
+	public static final String m_sGLOBALLOGWEBIDENTBASE = "it.acca_esse.ext"; // extension owner, used in building it,
 	// same name, same meaning in extension_conf_files/build.xml
-	public static final String m_sEXT_NAME ="lo_global_log"; //name of the extension, used in configurations
+	public static final String m_sGLOBALLOGEXT_NAME ="lo_global_log"; //name of the extension, used in configurations
 			// same name, same meaning in extension_conf_files/build.xml
-	public static final String m_sEXTENSION_IDENTIFIER = m_sWEBIDENTBASE+"."+m_sEXT_NAME;
-	public static final String m_sEXTENSION_BASE_KEY = "/"+m_sWEBIDENTBASE+"."+ m_sEXT_NAME;
+	public static final String m_sGLOBALLOGEXTENSION_IDENTIFIER = m_sGLOBALLOGWEBIDENTBASE+"."+m_sGLOBALLOGEXT_NAME;
+	public static final String m_sSINGLETON_LOGGER_SERVICE = m_sGLOBALLOGEXTENSION_IDENTIFIER + ".singleton.GlobalLogger";
+	public static final String m_sSINGLETON_LOGGER_SERVICE_INSTANCE = "/singletons/"+m_sSINGLETON_LOGGER_SERVICE;
+
+
+
+	public static final String m_sEXTENSION_BASE_KEY = "/"+m_sGLOBALLOGWEBIDENTBASE+"."+ m_sGLOBALLOGEXT_NAME;
 	public static final String m_sEXTENSION_CONF_BASE_KEY = m_sEXTENSION_BASE_KEY+".Configuration/";
 	
 	public static final String m_sEXTENSION_CONF_OPTIONS = m_sEXTENSION_CONF_BASE_KEY	+ "GlobalLogOptionsParameters/";
@@ -23,7 +28,4 @@ public class GlobalConstant {
 	public static final String	m_sFILE_ROTATION_COUNT 							= "FileRotationCount";// int
 	public static final String	m_sMAX_FILE_SIZE	 							= "MaxFileSize";// int
 
-	/// for XOX_Logger
-	public static final String m_sSINGLETON_LOGGER_SERVICE = m_sEXTENSION_IDENTIFIER + ".singleton.GlobalLogger";
-	public static final String m_sSINGLETON_LOGGER_SERVICE_INSTANCE = "/singletons/"+m_sSINGLETON_LOGGER_SERVICE;
 }
