@@ -28,7 +28,7 @@
 	xmlns:xs="http://www.w2.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <node oor:name="Nodes">
-    <node oor:name="@WEBIDENTBASE@.@NAME@.options.node" oor:op="fuse">
+    <node oor:name="it.acca_esse.ext.lo_global_log.options.node" oor:op="fuse">
       <prop oor:name="Label">
 		<value xml:lang="en">Global Logger Options</value>
 		<value xml:lang="it">Opzioni per 'Global Logger'</value>
@@ -41,17 +41,17 @@
         <value>true</value>
       </prop>
       <prop oor:name="GroupId">
-        <value>@WEBIDENTBASE@.@NAME@.options.node.group</value>
+        <value>it.acca_esse.ext.lo_global_log.options.node.group</value>
       </prop>
       <prop oor:name="GroupIndex">
         <value>0</value>
       </prop>
       <node oor:name="Leaves">
         <!-- leaf for logging options -->
-        <node oor:name="@WEBIDENTBASE@.@NAME@.options.node.Logging" oor:op="fuse">
+        <node oor:name="it.acca_esse.ext.lo_global_log.options.node.Logging" oor:op="fuse">
         <!-- the following id is used by the extension manager to retrieve the option leaf -->
           <prop oor:name="Id">
-            <value>@WEBIDENTBASE@.@NAME@</value>
+            <value>it.acca_esse.ext.lo_global_log</value>
           </prop>
           <prop oor:name="Label">
             <value xml:lang="en-US">Logging</value>
@@ -65,7 +65,7 @@
             <value>com.yacme.ext.oxsit.comp.options.ManageLoggingOptions</value>
           </prop>
           <prop oor:name="GroupId">
-            <value>@WEBIDENTBASE@.@NAME@.options.node</value>
+            <value>it.acca_esse.ext.lo_global_log.options.node</value>
           </prop>
           <prop oor:name="GroupIndex">
             <value>1</value>
