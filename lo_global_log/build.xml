@@ -199,6 +199,7 @@ the default target must be removed
 	   		outputproperty="git.revision.number">
 	   	</exec>
 	   	<echo>${extension_jar_file} Git Revision Number ${git.revision.number}, version ${version}, spec version: ${spec_version}</echo>
+
 		<!-- Create the distribution directory -->
 		<mkdir dir="${dist}/lib" />
 		<!-- Put everything in ${build} into the .jar file -->
@@ -218,6 +219,9 @@ the default target must be removed
 				<attribute name="Class-Path" value="" />
 			</manifest>
 		</jar>
+
+		<!-- create the component implementation jar -->
+	
 	</target>
 
 	<!-- dependency of description.xml from build number -->
