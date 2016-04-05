@@ -6,6 +6,7 @@ import com.sun.star.registry.InvalidRegistryException;
 import com.sun.star.registry.XRegistryKey;
 
 import it.acca_esse.ext.lo_global_log.logging.GlobalLogger;
+import it.acca_esse.ext.lo_global_log.options.ManageLoggingOptions;
 
 
 public class RegisterServices {
@@ -29,6 +30,10 @@ public class RegisterServices {
 					GlobalLogger.m_sServiceNames );
 //DEBUG			System.out.println("__getComponentFactory: "+GlobalLogger.m_sImplementationName);
 		}
+		else if ( sImplementationName.equals( ManageLoggingOptions.m_sImplementationName ) ) {
+			xFactory = Factory.createComponentFactory( ManageLoggingOptions.class, ManageLoggingOptions.m_sServiceNames );
+System.out.println("__getComponentFactory: "+ManageLoggingOptions.m_sImplementationName+" "+xFactory);
+		}
 		return xFactory;
 	}
 
@@ -47,7 +52,7 @@ public class RegisterServices {
 				GlobalLogger.m_sImplementationName,
 				GlobalLogger.m_sServiceNames,
 				xRegistryKey)) {
-			System.out.println("__writeRegistryServiceInfo: Factory.writeRegistryServiceInfo returned false");
+System.out.println("__writeRegistryServiceInfo: Factory.writeRegistryServiceInfo returned false");
 			return false;
 		}
 		//prepare the new key path
@@ -56,7 +61,7 @@ public class RegisterServices {
 					GlobalLogger.m_sImplementationName+ // the class implementing
 					"/UNO/SINGLETONS/"+	//fixed key reference
 					GlobalLogger.m_sServiceNames[0]); //
-			System.out.println("New singleton key: "+
+System.out.println("New singleton key: "+
 					GlobalLogger.m_sImplementationName+ // the class implementing
 					"/UNO/SINGLETONS/"+	//fixed key reference
 					GlobalLogger.m_sServiceNames[0]); //
@@ -70,6 +75,10 @@ System.out.println("__writeRegistryServiceInfo: "+GlobalLogger.m_sImplementation
 		}
 System.out.println("__writeRegistryServiceInfo: "+GlobalLogger.m_sImplementationName+": "+retGLogg);
 
-		return (retGLogg );
+		boolean retLogging =
+				Factory.writeRegistryServiceInfo( ManageLoggingOptions.m_sImplementationName, ManageLoggingOptions.m_sServiceNames, xRegistryKey );
+
+System.out.println("__writeRegistryServiceInfo: "+ManageLoggingOptions.m_sImplementationName+": "+retLogging);
+		return (retGLogg && retLogging);
 	}
 }

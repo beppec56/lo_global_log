@@ -62,7 +62,7 @@
           </prop>
           <prop oor:name="EventHandlerService">
 	        <!-- Service name implementing the handler -->
-            <value>com.yacme.ext.oxsit.comp.options.ManageLoggingOptions</value>
+            <value>it.acca_esse.ext.lo_global_log.options.ManageLoggingOptions</value>
           </prop>
           <prop oor:name="GroupId">
             <value>it.acca_esse.ext.lo_global_log.options.node</value>
