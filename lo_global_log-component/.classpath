@@ -7,6 +7,6 @@
 	<classpathentry kind="lib" path="/opt/libreoffice5.1/program/classes/ridl.jar"/>
 	<classpathentry kind="lib" path="/opt/libreoffice5.1/program/classes/unoil.jar"/>
 	<classpathentry kind="lib" path="/opt/libreoffice5.1/program/classes/unoloader.jar"/>
-	<classpathentry kind="lib" path="pre-built-type-classes"/>
+	<classpathentry kind="lib" path="/lo_global_log-uno_types/dist/lib/lo_global_log.uno.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
