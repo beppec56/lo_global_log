@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Copyright 2009 by Giuseppe Castagno beppec56@openoffice.org
+  Copyright 2009 by Giuseppe Castagno beppec56@openoffice.org
 
-    The Contents of this file are made available subject to
-    the terms of European Union Public License (EUPL) version 1.1
-    as published by the European Community.
+  The Contents of this file are made available subject to
+  the terms of European Union Public License (EUPL) version 1.1
+  as published by the European Community.
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the EUPL.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the EUPL.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    EUPL for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  EUPL for more details.
 
-    You should have received a copy of the EUPL along with this
-    program.  If not, see:
-    https://www.osor.eu/eupl, http://ec.europa.eu/idabc/eupl.
+  You should have received a copy of the EUPL along with this
+  program.  If not, see:
+  https://www.osor.eu/eupl, http://ec.europa.eu/idabc/eupl.
 -->
 <manifest:manifest xmlns:manifest="http://openoffice.org/2001/manifest">
-  <!-- next element it's deprecated in 3.1, to be removed... -->
-  <manifest:file-entry manifest:full-path="pkg-desc/pkg-description-it.txt" manifest:media-type="application/vnd.sun.star.package-bundle-description"/>
-  <manifest:file-entry manifest:full-path="Addons.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
-  <manifest:file-entry manifest:full-path="AddonConfiguration.xcs" manifest:media-type="application/vnd.sun.star.configuration-schema"/>
-  <manifest:file-entry manifest:full-path="AddonConfiguration.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
-  <manifest:file-entry manifest:full-path="lo_global_log.uno.rdb" manifest:media-type="application/vnd.sun.star.uno-typelibrary;type=RDB"/>
-  <manifest:file-entry manifest:full-path="lo_global_log.uno.jar" manifest:media-type="application/vnd.sun.star.uno-typelibrary;type=Java"/>
-  <manifest:file-entry manifest:full-path="lo_global_log.jar" manifest:media-type="application/vnd.sun.star.uno-component;type=Java"/>
+	<!-- next element it's deprecated in 3.1, to be removed... -->
+	<manifest:file-entry manifest:full-path="pkg-desc/pkg-description-it.txt" manifest:media-type="application/vnd.sun.star.package-bundle-description"/>
+	<manifest:file-entry manifest:full-path="Addons.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
+	<manifest:file-entry manifest:full-path="AddonConfiguration.xcs" manifest:media-type="application/vnd.sun.star.configuration-schema"/>
+	<manifest:file-entry manifest:full-path="AddonConfiguration.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
+	<!-- file for options dialog pages -->
+	<manifest:file-entry manifest:full-path="OptionsDialog.xcu" manifest:media-type="application/vnd.sun.star.configuration-data"/>
+	<manifest:file-entry manifest:full-path="lo_global_log.uno.rdb" manifest:media-type="application/vnd.sun.star.uno-typelibrary;type=RDB"/>
+	<manifest:file-entry manifest:full-path="lo_global_log.uno.jar" manifest:media-type="application/vnd.sun.star.uno-typelibrary;type=Java"/>
+	<manifest:file-entry manifest:full-path="lo_global_log.jar" manifest:media-type="application/vnd.sun.star.uno-component;type=Java"/>
 </manifest:manifest>

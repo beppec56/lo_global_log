@@ -93,7 +93,7 @@ build-extension
 	<property name="oui" value="/Office/UI" />
 	<property name="pdesc" value="/pkg-desc" />
 	<property name="lic" value="/registration" />
-	<property name="option_gui" value="/dialogs" />
+	<property name="option_gui" value="/dialogs/leaf_logging_options" />
 
 	<property name="extension_dir" location="extension" />
 	<property name="extension_dest_dir" location="build" />
@@ -244,6 +244,12 @@ build-extension
 			</filterset >
 		</copy>
 		<copy file="${extension_dir}/Addons.xcu.xml" tofile="${extension_dest_dir}/Addons.xcu" />
+		<filterset>
+			<filter token="WEBIDENTBASE" value="${webidentbase_service}" />
+			<filter token="NAME" value="${ext_conf_name}" />
+		</filterset >
+		<!-- copy options configuration file -->
+		<copy file="${extension_dir}/OptionsDialog.xcu.xml" tofile="${extension_dest_dir}/OptionsDialog.xcu" />
 		<filterset>
 			<filter token="WEBIDENTBASE" value="${webidentbase_service}" />
 			<filter token="NAME" value="${ext_conf_name}" />
@@ -458,7 +464,7 @@ build-extension
 		<!-- tar basedir="${archr}" destfile="${tar_dest}/${project_name}-${version}.tar"/ -->
 	</target>
 
-	<target name="build-arch-zip" depends="build-arch-sub"  description="build the zip archive of the project, only versioning">
+	<target name="build-arch-zip" depends="build-arch-sub"  description="NOTE: broken target! - build the zip archive of the project, only versioning">
 
 		<!-- bzip2 src="${tar_dest}/${project_name}-${version}.tar" destfile="${tar_dest}/${project_name}-${version}.tar.bz2" / -->
 		<delete file="${tar_dest}/${project_name}-${version}.tar" />

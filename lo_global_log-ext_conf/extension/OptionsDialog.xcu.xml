@@ -19,7 +19,6 @@
     program.  If not, see:
     https://www.osor.eu/eupl, http://ec.europa.eu/idabc/eupl.
 -->
-<!DOCTYPE oor:component-data SYSTEM "../../../../component-update.dtd">
 <!-- 
 	The structure of this file is detailed at:
 	http://localhost:8085/source/xref/Current/officecfg/registry/schema/org/openoffice/Office/OptionsDialog.xcs
@@ -31,12 +30,12 @@
   <node oor:name="Nodes">
     <node oor:name="@WEBIDENTBASE@.@NAME@.options.node" oor:op="fuse">
       <prop oor:name="Label">
-		<value xml:lang="en">XAdES (IT) Standard Digital Signature</value>
-		<value xml:lang="it">Firma digitale standard XAdES (IT)</value>
+		<value xml:lang="en">Global Logger Options</value>
+		<value xml:lang="it">Opzioni per 'Global Logger'</value>
       </prop>
       <!-- thepage for node -->
       <prop oor:name="OptionsPage">
-        <value>%origin%/dialogs/root_node.xdl</value>
+        <value>%origin%/dialogs/leaf_logging_root/root_node.xdl</value>
       </prop>
       <prop oor:name="AllModules">
         <value>true</value>
@@ -48,31 +47,6 @@
         <value>0</value>
       </prop>
       <node oor:name="Leaves">
-        <!-- leaf for general options -->
-        <node oor:name="@WEBIDENTBASE@.@NAME@.options.node.Generali" oor:op="fuse">
-        <!-- the following id is used by the extension manager to retrieve the option leaf -->
-          <prop oor:name="Id">
-            <value>@WEBIDENTBASE@.@NAME@</value>
-          </prop>
-          <prop oor:name="Label">
-            <value xml:lang="en-US">General</value>
-            <value xml:lang="it">Generali</value>
-          </prop>
-          <prop oor:name="OptionsPage">
-            <value>%origin%/dialogs/leaf_general.xdl</value>
-          </prop>
-          <prop oor:name="EventHandlerService">
-	        <!-- Service name implementing the handler -->
-            <value>com.yacme.ext.oxsit.comp.options.ManageGeneralOptions</value>
-          </prop>
-          <prop oor:name="GroupId">
-            <value>@WEBIDENTBASE@.@NAME@.options.node</value>
-          </prop>
-          <prop oor:name="GroupIndex">
-            <value>0</value>
-          </prop>
-        </node>
-        <!-- end leaf for general options -->
         <!-- leaf for logging options -->
         <node oor:name="@WEBIDENTBASE@.@NAME@.options.node.Logging" oor:op="fuse">
         <!-- the following id is used by the extension manager to retrieve the option leaf -->
@@ -98,31 +72,6 @@
           </prop>
         </node>
         <!-- end leaf for logging options -->
-        <!-- leaf for SSCD options -->
-        <node oor:name="@WEBIDENTBASE@.@NAME@.options.node.SSCD" oor:op="fuse">
-        <!-- the following id is used by the extension manager to retrieve the option leaf -->
-          <prop oor:name="Id">
-            <value>@WEBIDENTBASE@.@NAME@</value>
-          </prop>
-          <prop oor:name="Label">
-            <value xml:lang="en-US">Secure Signature Creation Device</value>
-            <value xml:lang="it">Secure Signature Creation Device (SSCD)</value>
-          </prop>
-          <prop oor:name="OptionsPage">
-            <value>%origin%/dialogs/leaf_sscd.xdl</value>
-          </prop>
-          <prop oor:name="EventHandlerService">
-	        <!-- Service name implementing the handler -->
-            <value>com.yacme.ext.oxsit.comp.options.ManageSSCDOptions</value>
-          </prop>
-          <prop oor:name="GroupId">
-            <value>@WEBIDENTBASE@.@NAME@.options.node</value>
-          </prop>
-          <prop oor:name="GroupIndex">
-            <value>2</value>
-          </prop>
-        </node>
-        <!-- end leaf for SSCD options -->      
       </node>
     </node>
   </node>
