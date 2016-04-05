@@ -25,7 +25,7 @@ ATTENTION:
 the default target must be removed
 
 -->
-<project name="lo_global_log" default="build-jar" basedir=".">
+<project name="lo_global_log-uno_types" default="build-jar" basedir=".">
 	<property name="project_friendly_name" value="lo_global_log" />	
 	<property name="project_name" value="${project_friendly_name}" />
 	<property name="extension_jar_file" value="${project_name}.uno.jar" />
@@ -37,9 +37,9 @@ the default target must be removed
 	<!-- set global properties for this build -->
 	<!-- properties used when building/deploying the extension -->
 	<!-- version used for updating the extension, displayed on LO interface and printed on the log files -->
-	<property name="version" value="0.0.1" />
+	<property name="version" value="0.1.0" />
 	<property name="longversion" value="${version}" />
-	<property name="spec_version" value="0.0.1" />
+	<property name="spec_version" value="1.0.0" />
 
 	<!--
 	grab option file for platform 
@@ -166,7 +166,7 @@ the default target must be removed
 				<pathelement path="${lo_classes}/jut.jar" />
 				<pathelement path="${lo_classes}/ridl.jar" />
 				<pathelement path="${lo_classes}/unoil.jar" />
-				<pathelement path="${basedir}/pre-built-type-classes" />
+				<!-- pathelement path="${basedir}/pre-built-type-classes" / -->
 			</classpath>
 			<compilerarg value="-Xlint:unchecked" />
 		</javac>
@@ -207,16 +207,16 @@ the default target must be removed
 			<!-- build the manifest file on-line -->
 			<manifest>
 				<attribute name="Built-By" value="http://www.acca-esse.it" />
-				<attribute name="Specification-Title" value="easyBrowse" />
+				<attribute name="Specification-Title" value="GlobalLogger UNO Types" />
 				<attribute name="Specification-Version" value="${spec_version}" />
 				<attribute name="Specification-Vendor" value="http://www.acca-esse.it" />
 				<attribute name="Implementation-Title" value="${project_name}" />
 				<attribute name="Implementation-Version" value="${TODAY}, Vers. ${version}-${git.revision.number}" />
 				<attribute name="Implementation-Vendor" value="http://www.acca-esse.it" />
 				<attribute name="Ant-Version" value="${ant.version}" />
-				<attribute name="UNO-Type-Path" value="" />
-				<attribute name="RegistrationClassName" value="it.acca_esse.ext.lo_global_log.RegisterServices" />
-				<attribute name="Class-Path" value="" />
+				<!-- attribute name="UNO-Type-Path" value="" / -->
+				<!-- attribute name="RegistrationClassName" value="it.acca_esse.ext.lo_global_log.RegisterServices" />
+				<attribute name="Class-Path" value="" / -->
 			</manifest>
 		</jar>
 
