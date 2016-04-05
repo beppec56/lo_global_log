@@ -49,6 +49,7 @@ build-extension
 	      <format property="buildtime" pattern="yyyy-MM-dd HH:mm:ss" offset="0" unit="hour"/>
 	</tstamp>
 	<property name="webidentbase" value="it.acca-esse.ext" />
+	<property name="webidentbase_service" value="it.acca_esse.ext" />
 	<!-- BEGIN OF local (intranet you may change them to suit you) web properties -->
 	<property name="webhost" value="http://192.168.1.40" />
 	<property name="webpath" value="w2/acca-esse.it/dwnld/lo/extensions" />
@@ -233,19 +234,19 @@ build-extension
 		<!-- main extension configuration files -->
 		<copy file="${extension_dir}/AddonConfiguration.xcs.xml" tofile="${extension_dest_dir}/AddonConfiguration.xcs">
 			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="WEBIDENTBASE" value="${webidentbase_service}" />
 				<filter token="NAME" value="${ext_conf_name}" />
 			</filterset >
 		</copy>
 		<copy file="${extension_dir}/AddonConfiguration.xcu.xml" tofile="${extension_dest_dir}/AddonConfiguration.xcu">
 			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
+				<filter token="WEBIDENTBASE" value="${webidentbase_service}" />
 				<filter token="NAME" value="${ext_conf_name}" />
 			</filterset >
 		</copy>
 		<copy file="${extension_dir}/Addons.xcu.xml" tofile="${extension_dest_dir}/Addons.xcu" />
 		<filterset>
-			<filter token="WEBIDENTBASE" value="${webidentbase}" />
+			<filter token="WEBIDENTBASE" value="${webidentbase_service}" />
 			<filter token="NAME" value="${ext_conf_name}" />
 		</filterset >
 		
