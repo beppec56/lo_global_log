@@ -27,7 +27,8 @@ public LoggerParametersAccess(XComponentContext _Context) {
 	super(_Context);
 	try {
 		m_oOptionsParametersRegKey = createConfigurationReadWriteView( GlobalConstant.m_sEXTENSION_CONF_OPTIONS );
-	} catch (Exception e) {
+	} catch (Throwable e) {
+		System.out.println("Error accessing configuration "+e.toString());
 		e.printStackTrace();
 	} finally {
 	}

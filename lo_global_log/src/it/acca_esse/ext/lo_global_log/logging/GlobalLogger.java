@@ -55,21 +55,27 @@ public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Log
 	 * 
 	 * @param _ctx
 	 */
-	public GlobalLogger(XComponentContext _ctx) {
-		//read the logger configuration locally
-		//get configuration access, using standard registry functions
-		m_aLoggerConfigAccess = new LoggerParametersAccess(_ctx);
+    public GlobalLogger(XComponentContext _ctx) {
+    	//read the logger configuration locally
+    	//get configuration access, using standard registry functions
+    	try
+    	{
+    		m_aLoggerConfigAccess = new LoggerParametersAccess(_ctx);
 
-		m_sName = GlobalConstant.m_sGLOBALLOGEXTENSION_IDENTIFIER;
-		m_aLogger = Logger.getLogger(m_sName);
-		m_aLogger.setUseParentHandlers(false);//disables the console output of the root logger
+    		m_sName = GlobalConstant.m_sGLOBALLOGEXTENSION_IDENTIFIER;
+    		m_aLogger = Logger.getLogger(m_sName);
+    		m_aLogger.setUseParentHandlers(false);//disables the console output of the root logger
 
-		getLoggingConfiguration();
-		configureLogger();
+    		getLoggingConfiguration();
+    		configureLogger();
 
-		if(m_bCanLogMyself)
-			m_aLogger.config("ctor"); //this correspond to the application DEBUG level
-	}
+    		if(m_bCanLogMyself)
+    			m_aLogger.config("ctor"); //this correspond to the application DEBUG level
+    	}
+    	catch( Throwable e) {
+    		e.printStackTrace();
+    	}
+    }
 
 	/* (non-Javadoc)
 	 * @see com.sun.star.lang.XServiceInfo#getImplementationName()
