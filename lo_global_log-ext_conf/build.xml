@@ -372,7 +372,7 @@ build-extension
 		<echo>======== *** =========</echo>
 		<subant target="clean">
 			<filelist dir="${basedir}/../">
-				<file name="${easyb_main_comp}/build.xml" />
+				<file name="${uno_types}/build.xml" />
 			</filelist>
 		</subant>
 
