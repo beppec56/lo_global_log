@@ -58,7 +58,7 @@
             <value xml:lang="it">Logging</value>
           </prop>
           <prop oor:name="OptionsPage">
-            <value>%origin%/dialogs/leaf_logging.xdl</value>
+            <value>%origin%/dialogs/leaf_logging_options/leaf_logging.xdl</value>
           </prop>
           <prop oor:name="EventHandlerService">
 	        <!-- Service name implementing the handler -->

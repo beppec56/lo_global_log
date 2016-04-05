@@ -93,7 +93,7 @@ build-extension
 	<property name="oui" value="/Office/UI" />
 	<property name="pdesc" value="/pkg-desc" />
 	<property name="lic" value="/registration" />
-	<property name="option_gui" value="/dialogs/leaf_logging_options" />
+	<property name="option_gui" value="/dialogs" />
 
 	<property name="extension_dir" location="extension" />
 	<property name="extension_dest_dir" location="build" />
@@ -207,6 +207,15 @@ build-extension
 				<filter token="WEBIDENTBASE" value="${webidentbase}" />
 				<filter token="NAME" value="${ext_conf_name}" />
 			</filterset >
+		</copy>
+
+		<!-- copy -->
+		<copy todir="${extension_dest_dir}${option_gui}">
+			<fileset dir="${extension_dir}${option_gui}">
+				<include name="**/*.xdl" />
+				<include name="**/*.properties" />
+				<include name="**/*.default" />
+			</fileset>
 		</copy>
 
 		<!-- copy todir="${extension_dest_dir}${option_gui}">
