@@ -1,0 +1,41 @@
+/*************************************************************************
+ * 
+ *  Copyright 2016 by Giuseppe Castagno giuseppe.castagno@acca-esse.eu
+ *  
+ *  The Contents of this file are made available subject to
+ *  the terms of European Union Public License (EUPL) version 1.1
+ *  as published by the European Community.
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the EUPL.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  EUPL for more details.
+ *
+ *  You should have received a copy of the EUPL along with this
+ *  program.  If not, see:
+ *  https://www.osor.eu/eupl, http://ec.europa.eu/idabc/eupl.
+ *
+ ************************************************************************/
+
+#ifndef __eu_acca_esse_ext_lo_global_log_XOX_Logger_idl__
+#define __eu_acca_esse_ext_lo_global_log_XOX_Logger_idl__
+
+module it { module acca_esse { module ext { module lo_global_log {
+
+	enum LoggerLevel
+	{
+	  LOG_LEVEL_FINE,
+	  LOG_LEVEL_INFO,
+	  LOG_LEVEL_DEBUG,
+	  LOG_LEVEL_WARNING,
+	  LOG_LEVEL_SEVERE,
+	  LOG_CONFIG,
+	  LOG_ALWAYS
+	};
+      }; }; }; };
+
+#endif
+

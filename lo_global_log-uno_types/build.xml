@@ -1,0 +1,243 @@
+<!--
+    Copyright 2016 by Giuseppe Castagno giuseppe.castagno@acca-esse.it
+
+    The Contents of this file are made available subject to
+    the terms of European Union Public License (EUPL) version 1.1
+    as published by the European Community.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the EUPL.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    EUPL for more details.
+
+    You should have received a copy of the EUPL along with this
+    program.  If not, see:
+    https://www.osor.eu/eupl, http://ec.europa.eu/idabc/eupl.
+-->
+
+<!--
+add comments here.........
+
+ATTENTION:
+the default target must be removed
+
+-->
+<project name="lo_global_log" default="build-jar" basedir=".">
+	<property name="project_friendly_name" value="lo_global_log" />	
+	<property name="project_name" value="${project_friendly_name}" />
+	<property name="extension_jar_file" value="${project_name}.uno.jar" />
+	<property name="extension_rdb_file" value="${project_name}.uno.rdb" />
+	<description>
+        Build the jar file ${extension_jar_file} + ${extension_rdb_file}.
+    </description>
+	<echo>Build the jar file ${extension_jar_file}.</echo>
+	<!-- set global properties for this build -->
+	<!-- properties used when building/deploying the extension -->
+	<!-- version used for updating the extension, displayed on LO interface and printed on the log files -->
+	<property name="version" value="0.0.1" />
+	<property name="longversion" value="${version}" />
+	<property name="spec_version" value="0.0.1" />
+
+	<!--
+	grab option file for platform 
+	platform file are:
+	Linux: build.Linux-i386.properties
+	-->
+	<echo message="${project_name}: platform specific file is: build.${os.name}-${os.arch}.properties."/>
+	<available file="build.${os.name}-${os.arch}.properties" type="file" property="properties_file.available" value="false" />
+	<property file="build.${os.name}-${os.arch}.properties" />
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="build-eclipse" location="bin"/>
+	<property name="dist" location="dist" />
+	<property name="uno_class" location="pre-built-type-classes" />
+	<property name="uno_rdb" location="pre-built-type-rdb" />
+	<property name="uno_idl" location="idl" />
+
+	<!--
+	 The variable lo_classes should be set in the Eclipse IDE, Ant variables, or in a
+	 build.${os.name}-${os.arch}.properties file.
+	 See README file in doc project.
+	-->
+	<property name="lo_classes" value="$lo_classes" />
+	<echo>lo_classes: ${lo_classes}</echo>
+	<available file="${lo_classes}" type="dir" property="lo_classes.available" value="false" />
+	<fail message="No LO classes available. Please edit the file build.${os.name}-${os.arch}.properties to correct it.">
+		<condition>
+			<not>
+				<isset property="lo_classes.available" />
+			</not>
+		</condition>
+	</fail>
+
+	<!-- directory to zip for archive -->
+	<property name="archr" location="to-be-zipped" />
+	<property name="arch" location="${archr}/${project_name}-${version}" />
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile-idl" description="Internal target: compile idl, rdb and class for a single UNO type">
+		<!-- compile idl, Linux version, see compile-idl.sh for details -->
+		<exec dir="${uno_idl}" executable="${basedir}/${lo_sdk_idl_compile}" description="compile a idl file to binary" os="Linux-amd64">
+			<arg value="${lo_sdk_init_script}"/>
+			<arg value="${parm1}"/>
+			<arg value="${uno_idl}"/>
+			<arg value="${uno_rdb}"/>
+			<arg value="${uno_class}"/>
+			<arg value="${parm2}"/>
+			<arg value="${extension_rdb_file}"/>
+		</exec>		
+	</target>
+	<!--
+	The following target builds the new UNO interface class files out of the UNO definition.
+	For this you'll need a working OpenOffice.org SDK for your platform.
+	Change into the file platform specific file is: build.${os.name}-${os.arch}.properties the 
+	properties value to suit your needs,	properties needed are commented in the supplied files.	
+	-->
+	<target name="prebuild"  description="User target: uses OOo SDK to build class file from the UNO IDL definition file. Please read the build.xml comments!">
+		<!-- check the OOo SDK presence 
+
+		 The variable ooosdk should be set in the Eclipse IDE, Ant variables, or in a
+		 build.${os.name}-${os.arch}.properties file.
+		 See README file in doc project.
+		-->
+		<property name="ooosdk" value="$ooosdk" />	
+		<available file="${losdk}" type="dir" property="losdk.available" value="false" />
+		<fail message="No OOo sdk available. Please edit the file build.${os.name}-${os.arch}.properties to correct it.">
+			<condition>
+				<not>
+					<isset property="losdk.available" />
+				</not>
+			</condition>
+		</fail>
+
+		<!-- prepare the new empty directory -->
+		<mkdir dir="${uno_rdb}" />
+		<mkdir dir="${uno_class}" />
+		<!-- remove previous directory structure -->
+		<delete >
+			<fileset dir="${uno_rdb}" >
+				<include name="**/*.rdb" />
+			</fileset>
+		</delete>
+
+		<delete>
+			<fileset dir="${uno_class}" >
+				<include name="**/*.class" />
+			</fileset>
+		</delete>
+
+		<!-- delete the build directory, after this target, target build-jar needs to be rebuilt -->
+		<delete dir="${build-eclipse}" />
+		<delete dir="${build}" />
+		
+		<antcall target="compile-idl">
+			<param name="parm1" value="XOX_Logger"/>
+			<param name="parm2" value="it.acca_esse.ext.lo_global_log"/>
+		</antcall>
+
+		<antcall target="compile-idl">
+			<param name="parm1" value="LoggerLevel"/>
+			<param name="parm2" value="it.acca_esse.ext.lo_global_log"/>
+		</antcall>
+
+		<!-- last thing, build documentation files, only locally, not in git for copyright reason -->
+		<exec dir="${uno_idl}" executable="${basedir}/generate-idl-doc.sh" description="generate idl documentation" os="Linux-i386">
+			<arg value="${lo_sdk_init_script}"/>
+			<arg value="${uno_idl}"/>
+			<arg value="${basedir}/html-no-svn"/>
+		</exec>
+	</target>
+
+	<target name="compile" depends="init" description="Internal target: assemble the created class file into a Java archive (jar)">		
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac debug="true" target="1.7" srcdir="${src}" destdir="${build}" deprecation="true">
+			<classpath>
+				<pathelement path="${lo_classes}/juh.jar" />
+				<pathelement path="${lo_classes}/jurt.jar" />
+				<pathelement path="${lo_classes}/jut.jar" />
+				<pathelement path="${lo_classes}/ridl.jar" />
+				<pathelement path="${lo_classes}/unoil.jar" />
+				<pathelement path="${basedir}/pre-built-type-classes" />
+			</classpath>
+			<compilerarg value="-Xlint:unchecked" />
+		</javac>
+
+		<!--
+			copy helper classes from OOo SDK
+			Disable the whole section if the stand alone capability is not needed
+		-->
+		<!-- copy todir="${build}" failonerror="false">
+			<fileset dir="${ooosdk}/classes">
+				<include name="**/*" />
+			</fileset>
+		</copy -->
+		<!-- end of copy helper classes from OOo SDK -->
+
+		<!--
+			copy pre-built Java types for UNO registration
+			Disable the whole section if the stand alone capability is not needed
+		-->
+		<copy todir="${build}" failonerror="true">
+			<fileset dir="${basedir}/pre-built-type-classes">
+				<include name="**/*.class" />
+			</fileset>
+		</copy>	
+		<!-- end of copy -->
+	</target>
+
+	<target name="build-jar" depends="compile" description="Default target: generate the distribution">
+		<exec dir="." executable="${git_revision_script}"
+	   		outputproperty="git.revision.number">
+	   	</exec>
+	   	<echo>${extension_jar_file} Git Revision Number ${git.revision.number}, version ${version}, spec version: ${spec_version}</echo>
+
+		<!-- Create the distribution directory -->
+		<mkdir dir="${dist}/lib" />
+		<!-- Put everything in ${build} into the .jar file -->
+		<jar jarfile="${dist}/lib/${extension_jar_file}" basedir="${build}">
+			<!-- build the manifest file on-line -->
+			<manifest>
+				<attribute name="Built-By" value="http://www.acca-esse.it" />
+				<attribute name="Specification-Title" value="easyBrowse" />
+				<attribute name="Specification-Version" value="${spec_version}" />
+				<attribute name="Specification-Vendor" value="http://www.acca-esse.it" />
+				<attribute name="Implementation-Title" value="${project_name}" />
+				<attribute name="Implementation-Version" value="${TODAY}, Vers. ${version}-${git.revision.number}" />
+				<attribute name="Implementation-Vendor" value="http://www.acca-esse.it" />
+				<attribute name="Ant-Version" value="${ant.version}" />
+				<attribute name="UNO-Type-Path" value="" />
+				<attribute name="RegistrationClassName" value="it.acca_esse.ext.lo_global_log.RegisterServices" />
+				<attribute name="Class-Path" value="" />
+			</manifest>
+		</jar>
+
+		<!-- create the component implementation jar -->
+	
+	</target>
+
+	<!-- dependency of description.xml from build number -->
+	<dependset>
+		<srcfilelist dir="${basedir}" files="build.number" />
+		<targetfilelist dir="${extension_dest_dir}" files="description.xml" />
+	</dependset>
+
+	<target name="clean" description="User target: clean up the project">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<echo>Executing clean</echo>
+		<delete dir="${archr}" />
+		<delete dir="${build-eclipse}" />
+		<delete dir="${build}" />
+		<delete dir="${dist}/lib/*" />
+		<delete dir="${extension_dest_dir}" />
+	</target>
+
+	</project>
