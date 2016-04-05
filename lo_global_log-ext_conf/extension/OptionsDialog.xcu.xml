@@ -21,7 +21,7 @@
 -->
 <!-- 
 	The structure of this file is detailed at:
-	http://localhost:8085/source/xref/Current/officecfg/registry/schema/org/openoffice/Office/OptionsDialog.xcs
+	http://opengrok.libreoffice.org/xref/core/officecfg/registry/schema/org/openoffice/Office/OptionsDialog.xcs
  -->
 <oor:component-data oor:name="OptionsDialog" oor:package="org.openoffice.Office"
 	xmlns:oor="http://openoffice.org/2001/registry"
