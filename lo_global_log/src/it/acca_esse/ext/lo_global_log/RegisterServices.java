@@ -43,6 +43,13 @@ public class RegisterServices {
 	 */
 	public synchronized static boolean __writeRegistryServiceInfo( XRegistryKey xRegistryKey ) {
 		boolean retGLogg = false; 
+		if(!Factory.writeRegistryServiceInfo(
+				GlobalLogger.m_sImplementationName,
+				GlobalLogger.m_sServiceNames,
+				xRegistryKey)) {
+			System.out.println("__writeRegistryServiceInfo: Factory.writeRegistryServiceInfo returned false");
+			return false;
+		}
 		//prepare the new key path
 		try {
 			XRegistryKey newKey = xRegistryKey.createKey(
