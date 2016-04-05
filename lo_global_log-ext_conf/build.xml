@@ -37,7 +37,7 @@ build-extension
 	<!-- version used to update the extension, displayed on LO interface and printed on the log files -->
 	<property name="version" value="0.1.0.0" />
 	<property name="longversion" value="${version}" />
-	<property name="spec_version" value="0.0.1" />
+	<property name="spec_version" value="1.0.0" />
 
 	<echo>Java Version via Ant: ${ant.java.version}</echo>
 	<echo>Java Version System Prop: ${java.version}</echo> 
@@ -111,11 +111,15 @@ build-extension
 	<property name="license_dir" value="${doc_dir}/licenses"/>
 	<property name="third_party_license" value="${license_dir}/third_parties"/>
 
-	<property name="uno_types" value="${project_friendly_name}"/>
+	<property name="uno_types" value="${project_friendly_name}-uno_types"/>
 	<property name="uno_types_dir" value="${uno_types}/dist"/>
-	<property name="uno_types_jar" value="${uno_types}.uno.jar"/>
+	<property name="uno_types_jar" value="${project_friendly_name}.uno.jar"/>
 	<property name="uno_types_rdb_dir" value="${uno_types}/pre-built-type-rdb"/>
-	<property name="uno_types_rdb" value="${uno_types}.uno.rdb"/>
+	<property name="uno_types_rdb" value="${project_friendly_name}.uno.rdb"/>
+
+	<property name="uno_comp" value="${project_friendly_name}-component"/>
+	<property name="uno_comp_dir" value="${uno_comp}/dist"/>
+	<property name="uno_comp_jar" value="${project_friendly_name}.comp.jar"/>
 
 	<target name="build-jar" description="generate the subproject jars">
 
@@ -124,7 +128,7 @@ build-extension
 			<property name="version" value="${version}"/>
 			<property name="spec_version" value="${spec_version}"/>
 			<filelist dir="${basedir}/../">
-				<file name="${project_friendly_name}/build.xml" />
+				<file name="${uno_comp}/build.xml" />
 			</filelist>
 		</subant>
 
@@ -152,12 +156,7 @@ build-extension
 		
 		<copy file="${basedir}/../${uno_types_rdb_dir}/${uno_types_rdb}" todir="${extension_dest_dir}" />
 		<copy file="${basedir}/../${uno_types_dir}/lib/${uno_types_jar}" todir="${extension_dest_dir}" />
-
-		<!--
-			ATTENTION: doplicate the uno types jar, since it contains the component registration as well
-			hence, we need to have a different name in the extension manifest, to be able to register the same jar library as a component
-		-->
-		<copy file="${basedir}/../${uno_types_dir}/lib/${uno_types_jar}" tofile="${extension_dest_dir}/${extension_jar_file}" />
+		<copy file="${basedir}/../${uno_comp_dir}/lib/${uno_comp_jar}" tofile="${extension_dest_dir}/${extension_jar_file}" />
 
 		<!--copy file="${basedir}/../${sig_options_comp_dir}/lib/${sig_options_comp_jar}" todir="${extension_dest_dir}" / -->
 
@@ -248,26 +247,7 @@ build-extension
 		<filterset>
 			<filter token="WEBIDENTBASE" value="${webidentbase_service}" />
 			<filter token="NAME" value="${ext_conf_name}" />
-		</filterset >
-		
-		<!-- copy file="${extension_dir}/SynchronousJob.xcu.xml" tofile="${extension_dest_dir}/SynchronousJob.xcu" />
-		<filterset>
-			<filter token="WEBIDENTBASE" value="${webidentbase}" />
-			<filter token="NAME" value="${ext_name}" />
-		</filterset >
-		<copy file="${extension_dir}/DisableCommands.xcu.xml" tofile="${extension_dest_dir}/DisableCommands.xcu" >
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_name}" />
-			</filterset >
-		</copy>
-		<copy file="${extension_dir}/OptionsDialog.xcu.xml" tofile="${extension_dest_dir}/OptionsDialog.xcu">
-			<filterset>
-				<filter token="WEBIDENTBASE" value="${webidentbase}" />
-				<filter token="NAME" value="${ext_name}" />
-			</filterset >
-		</copy -->
-
+		</filterset >		
 		<!--- end of subtask -->
 	</target>
 
@@ -373,7 +353,7 @@ build-extension
 		<echo>======== *** =========</echo>
 		<subant target="clean">
 			<filelist dir="${basedir}/../">
-				<file name="${uno_types}/build.xml" />
+				<file name="${uno_comp}/build.xml" />
 			</filelist>
 		</subant>
 
