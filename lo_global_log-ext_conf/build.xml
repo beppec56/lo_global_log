@@ -98,7 +98,7 @@ build-extension
 	<property name="extension_dir" location="extension" />
 	<property name="extension_dest_dir" location="build" />
 	<property name="extension_file" value="${project_name}.oxt" />
-	<property name="extension_jar_file" value="${project_friendly_name}.jar" />
+	<property name="extension_jar_file" value="${project_friendly_name}.comp.jar" />
 	<property name="readme_it" value="release-notes_it.txt" />
 	<property name="readme_en" value="release-notes_en.txt" />
 	<!-- directory to zip for archive -->

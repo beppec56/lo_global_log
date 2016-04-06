@@ -9,20 +9,21 @@ import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
-public class LogJarVersion {
+public class LogJarVersionComp {
 	
 	 //TODO: change the jar library name to the right one...
 	final String m_aJarFileName = "lo_global_log.comp.jar";
 	URI executivePath ;
 
 	private String m_aJarVersion;
-	public LogJarVersion() {
-        CodeSource aCs = LogJarVersion.class.getProtectionDomain().getCodeSource();
+
+	public LogJarVersionComp() {
+        CodeSource aCs = LogJarVersionComp.class.getProtectionDomain().getCodeSource();
         if(aCs != null) {
             try {
                 URL aURL = aCs.getLocation(); // where this class is 'seen' by the java runtime
-                //System.out.println(aURL.toString()+" "+aURL.getPath());
-                //String thisFile = aURL.getFile();
+                System.out.println(aURL.toString()+" "+aURL.getPath());
+                																												String thisFile = aURL.getFile();
                 int pos = aURL.toString().indexOf(m_aJarFileName);
                 if(pos == -1) {
                     //non esiste, l'URL è il path
