@@ -199,10 +199,9 @@ public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Log
 		m_bCanLogMyself =  m_bEnableLogging && m_bEnableInfoLevel;
 		//set all levels, the levels are filtered by this class.
 		//fetch the log jav version
-		LogJarVersionComp compVersion = new LogJarVersionComp(); 
 		LogJarVersion unoVersion = new LogJarVersion(); 
 
-		System.out.println(compVersion.getVersion());
+		System.out.println(LogJarVersionComp.getVersion());
 		System.out.println(unoVersion.getVersion());
 	}
 

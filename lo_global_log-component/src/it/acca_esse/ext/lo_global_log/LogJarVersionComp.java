@@ -11,14 +11,18 @@ import java.util.jar.Manifest;
 
 public class LogJarVersionComp {
 	
-	 //TODO: change the jar library name to the right one...
-	final String m_aJarFileName = "lo_global_log.comp.jar";
-	URI executivePath ;
-
-	private String m_aJarVersion;
-
 	public LogJarVersionComp() {
-        CodeSource aCs = LogJarVersionComp.class.getProtectionDomain().getCodeSource();
+	}
+
+	public static String getVersion() {
+		 //TODO: change the jar library name to the right one...
+		final String m_aJarFileName = "lo_global_log.comp.jar";
+		URI executivePath = null;
+
+		String m_aJarVersion = "";
+
+
+		CodeSource aCs = LogJarVersionComp.class.getProtectionDomain().getCodeSource();
         if(aCs != null) {
             try {
                 URL aURL = aCs.getLocation(); // where this class is 'seen' by the java runtime
@@ -38,6 +42,8 @@ public class LogJarVersionComp {
             }
         }
 
+        if (executivePath == null)
+        	return "";
       //legge la versione dal manifest
         try {
             URI aNew = new URI(executivePath.getScheme(),
@@ -64,9 +70,6 @@ public class LogJarVersionComp {
         } catch (URISyntaxException e) {
 //            m_aLogger.log(e, false);
         }		
-	}
-
-	public String getVersion() {
 		return m_aJarFileName+":    "+m_aJarVersion;
 	}
 }
