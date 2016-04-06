@@ -1,0 +1,804 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+Copyrigth 2016 by ??
+-->
+<oor:component-data xmlns:oor="http://openoffice.org/2001/registry"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  oor:package="@WEBIDENTBASE@.@NAME@" oor:name="Configuration" >
+	<node oor:name="Messages">
+		<!--
+		    these are the localization strings.
+		    it's still a work in progress...
+
+		    File automatically generated.
+		    Please DO NOT EDIT MANUALLY!
+		-->
+		<!--
+		    ISO code, used internally
+		-->
+		<node oor:name="id_iso_lang_code" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">en</value>
+				<value xml:lang="it">it</value>
+			</prop>
+		</node>
+		<!--
+		    name of the extension, ignored when accessing the menu. To be put manually in description.xml file
+		-->
+		<node oor:name="id_descr" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">easyBrowse</value>
+				<value xml:lang="it">easyBrowse</value>
+			</prop>
+		</node>
+		<!--
+		    general id for cancel button
+		-->
+		<node oor:name="id_cancel" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">Cancel</value>
+				<value xml:lang="it">Annulla</value>
+			</prop>
+		</node>
+		<!--
+		    general id for No button
+		-->
+		<node oor:name="id_pb_no" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">No</value>
+				<value xml:lang="it">No</value>
+			</prop>
+		</node>
+		<!--
+		    general id for OK button
+		-->
+		<node oor:name="id_ok" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">Ok</value>
+				<value xml:lang="it">Ok</value>
+			</prop>
+		</node>
+		<!--
+		    general id for Yes button
+		-->
+		<node oor:name="id_pb_yes" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">Yes</value>
+				<value xml:lang="it">Sì</value>
+			</prop>
+		</node>
+		<!--
+		    about box menu, not used in messages, for translation only
+		-->
+		<node oor:name="id_about_menu" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">About easyBrowse…</value>
+				<value xml:lang="it">Informazioni su easyBrowse…</value>
+			</prop>
+		</node>
+		<!--
+		    about box
+		-->
+		<node oor:name="id_about_title" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">About easyBrowse</value>
+				<value xml:lang="it">Informazioni su easyBrowse</value>
+			</prop>
+		</node>
+		<node oor:name="id_about_mex" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">easyBrowse
+(@WEBIDENTBASE@.@NAME@)
+Built with @JAVA_VERS@ on @BUILD_TIME@ Rev. @REVISION@.
+Licensed under ??
+Copyright 2016 ??</value>
+				<value xml:lang="it">easyBrowse
+(@WEBIDENTBASE@.@NAME@)
+Compilato con @JAVA_VERS@ il @BUILD_TIME@ Rev. @REVISION@.
+Concesso in licenza secondo ??
+Copyright 2016 ??
+</value>
+			</prop>
+		</node>
+		<node oor:name="id_error_extension" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">easyBrowse extension error</value>
+				<value xml:lang="it">Errore estensione easyBrowse</value>
+			</prop>
+		</node>
+		<!--
+		    Credits
+		-->
+		<node oor:name="id_credits" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">Credits
+Giuseppe Castagno, developer
+</value>
+				<value xml:lang="it">Credits
+Giuseppe Castagno, sviluppatore
+</value>
+			</prop>
+		</node>
+		<!--
+		    Display license button
+		-->
+		<node oor:name="id_show_license" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">Show license</value>
+				<value xml:lang="it">Mostra licenza</value>
+			</prop>
+		</node>
+		<!--
+		    License display dialog title
+		-->
+		<node oor:name="id_title_show_license" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">Extension license</value>
+				<value xml:lang="it">Licenza dell'estensione</value>
+			</prop>
+		</node>
+		<!--
+		    login dialog title
+		-->
+		<node oor:name="id_login_title" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">easyBrowse login</value>
+				<value xml:lang="it">Login easyBrowse</value>
+			</prop>
+		</node>
+		<!--
+		    login dialog, activate demo mode (default user and password)
+		-->
+		<node oor:name="id_demo_mode" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">Demo mode</value>
+				<value xml:lang="it">Modo demo</value>
+			</prop>
+		</node>
+		<!--
+		    login dialog
+		-->
+		<node oor:name="id_user_label" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">User name:</value>
+				<value xml:lang="it">Nome utente:</value>
+			</prop>
+		</node>
+		<!--
+		    login dialog
+		-->
+		<node oor:name="id_passwd_label" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">Password:</value>
+				<value xml:lang="it">Password:</value>
+			</prop>
+		</node>
+		<!--
+		    login dialog, login button label
+		-->
+		<node oor:name="id_login_label" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">Login</value>
+				<value xml:lang="it">Login</value>
+			</prop>
+		</node>
+		<!--
+		    Main license of the extension
+		-->
+		<node oor:name="id_main_license" oor:op="replace">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
+				<value xml:lang="en">                          easyBrowse user license
+                                   V 0.0
+
+first row….
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+last row…………………
+</value>
+				<value xml:lang="it">                   Licenza d'uso per easyBrowse
+                                   V 0.0
+
+prima riga…
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ultima riga……..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</value>
+			</prop>
+		</node>
+	</node>
+</oor:component-data>

@@ -252,6 +252,15 @@ build-extension
 				<filter token="NAME" value="${ext_conf_name}" />
 			</filterset >
 		</copy>
+		<copy file="${extension_dir}/AddonMessages.xcu.xml" tofile="${extension_dest_dir}/AddonMessages.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase_service}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+				<filter token="JAVA_VERS" value="Java ${java_baseline}" />
+				<filter token="BUILD_TIME" value="${buildtime}" />				
+				<filter token="REVISION" value="${git.revision.number}" />
+			</filterset >
+		</copy>
 		<copy file="${extension_dir}/Addons.xcu.xml" tofile="${extension_dest_dir}/Addons.xcu" />
 		<filterset>
 			<filter token="WEBIDENTBASE" value="${webidentbase_service}" />

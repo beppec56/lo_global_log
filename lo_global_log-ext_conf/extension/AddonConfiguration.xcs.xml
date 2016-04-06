@@ -22,7 +22,12 @@
 	xmlns:oor="http://openoffice.org/2001/registry"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<templates/>
+	<templates>
+	<!-- localized text -->
+		<group oor:name="Message">
+			<prop oor:name="Text" oor:type="xs:string" oor:localized="true"/>
+		</group>
+	</templates>
 	<component>
 		<!-- In LO the following is accessed as a node  -->
 		<group oor:name="GlobalLogOptionsParameters">
@@ -106,5 +111,7 @@
 			</prop>
 			<!-- end of logging properties -->
 		</group>
+		<!-- In LO the following is accessed as a node  -->
+		<set oor:name="Messages" oor:node-type="Message"/>
 	</component>
 </oor:component-schema>
