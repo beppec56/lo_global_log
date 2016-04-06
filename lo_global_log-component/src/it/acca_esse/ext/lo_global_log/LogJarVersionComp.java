@@ -21,12 +21,10 @@ public class LogJarVersionComp {
 
 		String m_aJarVersion = "";
 
-
 		CodeSource aCs = LogJarVersionComp.class.getProtectionDomain().getCodeSource();
         if(aCs != null) {
             try {
                 URL aURL = aCs.getLocation(); // where this class is 'seen' by the java runtime
-                System.out.println(aURL.toString()+" "+aURL.getPath());
                 																												String thisFile = aURL.getFile();
                 int pos = aURL.toString().indexOf(m_aJarFileName);
                 if(pos == -1) {
