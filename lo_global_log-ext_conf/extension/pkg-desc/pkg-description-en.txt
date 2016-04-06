@@ -1,5 +1,5 @@
 LoGlobalLog
 (@WEBIDENTBASE@.@NAME@)
-Licensed under ?????
+Licensed under MPL/LGPLv3+ dual license
 Copyright (c) 2016 Giuseppe Castagno
 Built on @BUILD_TIME@ Rev. @REVISION@

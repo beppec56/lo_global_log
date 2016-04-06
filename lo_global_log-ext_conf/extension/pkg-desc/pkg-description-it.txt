@@ -1,5 +1,5 @@
 LoGlobalLog
 (@WEBIDENTBASE@.@NAME@)
-Concesso in licenza a norma della ???
-Copyright (c) 2016 LoGlobalLog
+Concesso in doppia licenza secondo MPL/LGPLv3+
+Copyright (c) 2016 Giuseppe Castagno
 Compilato il @BUILD_TIME@ Rev. @REVISION@
