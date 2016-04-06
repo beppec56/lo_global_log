@@ -11,19 +11,19 @@ import java.util.jar.Manifest;
 
 public class LogJarVersion {
 	
-	final String m_aJarFileName = "easy_browse-uno_types.uno.jar";
-	
+	 //TODO: change the jar library name to the right one...
+	final String m_aJarFileName = "lo_global_log.comp.jar";
 	URI executivePath ;
 
 	private String m_aJarVersion;
-	public LogJarVersion() {		
+	public LogJarVersion() {
         CodeSource aCs = LogJarVersion.class.getProtectionDomain().getCodeSource();
         if(aCs != null) {
             try {
                 URL aURL = aCs.getLocation(); // where this class is 'seen' by the java runtime
                 //System.out.println(aURL.toString()+" "+aURL.getPath());
                 //String thisFile = aURL.getFile();
-                int pos = aURL.toString().indexOf(m_aJarFileName); //FIXME: _00 modificare in modo che il nome del jar sia quello giusto
+                int pos = aURL.toString().indexOf(m_aJarFileName);
                 if(pos == -1) {
                     //non esiste, l'URL è il path
                     executivePath = new URI(aURL.toString());
@@ -68,5 +68,4 @@ public class LogJarVersion {
 	public String getVersion() {
 		return m_aJarFileName+":    "+m_aJarVersion;
 	}
-
 }
