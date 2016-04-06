@@ -24,7 +24,7 @@ public class MessageConfigurationAccess extends ConfigurationAccess implements X
 		super(_xContext );
 		try {
 			m_oMessagesRegKey = createConfigurationReadOnlyView(GlobalConstant.m_sEXTENSION_CONF_BASE_KEY+"Messages/");
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
