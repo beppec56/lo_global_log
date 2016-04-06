@@ -80,7 +80,6 @@ public class ManageLoggingOptions extends ManageOptions  implements XItemListene
 	public ManageLoggingOptions(XComponentContext xCompContext) {
 		super(xCompContext, m_nNumberOfControls, "leaf_logging");//leaf refers to OOo documentation about
 															// extension options
-		System.out.println("Init");
 		m_aLogger.enableLogging();// disabled in base class
 		m_aLogger.ctor();
 		//prepare the list of controls on the page
@@ -139,7 +138,6 @@ public class ManageLoggingOptions extends ManageOptions  implements XItemListene
 			m_aLogger.severe("ctor",e);
 		}			
 		m_aRegAcc.dispose();
-		System.out.println("Init done");
 	}
 
 	public String getImplementationName() {
@@ -195,7 +193,7 @@ public class ManageLoggingOptions extends ManageOptions  implements XItemListene
 			}
 			else {
 //notifies the changed config
-				System.out.println("no main logger!");
+				System.out.println(this.getClass().getName()+": no main logger!");
 			}
 	}	
 	/* (non-Javadoc)

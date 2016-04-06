@@ -32,7 +32,7 @@ public class RegisterServices {
 		}
 		else if ( sImplementationName.equals( ManageLoggingOptions.m_sImplementationName ) ) {
 			xFactory = Factory.createComponentFactory( ManageLoggingOptions.class, ManageLoggingOptions.m_sServiceNames );
-System.out.println("__getComponentFactory: "+ManageLoggingOptions.m_sImplementationName+" "+xFactory);
+//DEBUG			System.out.println("__getComponentFactory: "+ManageLoggingOptions.m_sImplementationName+" "+xFactory);
 		}
 		return xFactory;
 	}
@@ -52,33 +52,29 @@ System.out.println("__getComponentFactory: "+ManageLoggingOptions.m_sImplementat
 				GlobalLogger.m_sImplementationName,
 				GlobalLogger.m_sServiceNames,
 				xRegistryKey)) {
-System.out.println("__writeRegistryServiceInfo: Factory.writeRegistryServiceInfo returned false");
+//DEBUG			System.out.println("__writeRegistryServiceInfo: Factory.writeRegistryServiceInfo returned false");
 			return false;
 		}
-		//prepare the new key path
+//prepare the new key path for the singleton
 		try {
 			XRegistryKey newKey = xRegistryKey.createKey(
 					GlobalLogger.m_sImplementationName+ // the class implementing
 					"/UNO/SINGLETONS/"+	//fixed key reference
 					GlobalLogger.m_sServiceNames[0]); //
-System.out.println("New singleton key: "+
-					GlobalLogger.m_sImplementationName+ // the class implementing
-					"/UNO/SINGLETONS/"+	//fixed key reference
-					GlobalLogger.m_sServiceNames[0]); //
-
+//DEBUG			System.out.println("New singleton key: "+ GlobalLogger.m_sImplementationName+ "/UNO/SINGLETONS/"+ GlobalLogger.m_sServiceNames[0]);
 			newKey.setStringValue(GlobalLogger.m_sServiceNames[0]);
 			retGLogg = Factory.writeRegistryServiceInfo( GlobalLogger.m_sImplementationName, 
 					GlobalLogger.m_sServiceNames, xRegistryKey );
 		} catch (InvalidRegistryException e) {
-System.out.println("__writeRegistryServiceInfo: "+GlobalLogger.m_sImplementationName + "failed");		
+//DEBUG			System.out.println("__writeRegistryServiceInfo: "+GlobalLogger.m_sImplementationName + "failed");		
 			e.printStackTrace();
 		}
-System.out.println("__writeRegistryServiceInfo: "+GlobalLogger.m_sImplementationName+": "+retGLogg);
+//DEBUG			System.out.println("__writeRegistryServiceInfo: "+GlobalLogger.m_sImplementationName+": "+retGLogg);
 
 		boolean retLogging =
 				Factory.writeRegistryServiceInfo( ManageLoggingOptions.m_sImplementationName, ManageLoggingOptions.m_sServiceNames, xRegistryKey );
 
-System.out.println("__writeRegistryServiceInfo: "+ManageLoggingOptions.m_sImplementationName+": "+retLogging);
+//DEBUG			System.out.println("__writeRegistryServiceInfo: "+ManageLoggingOptions.m_sImplementationName+": "+retLogging);
 		return (retGLogg && retLogging);
 	}
 }

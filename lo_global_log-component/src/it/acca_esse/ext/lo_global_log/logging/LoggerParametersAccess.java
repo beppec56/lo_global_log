@@ -129,8 +129,6 @@ public void dispose() {
  * @see com.sun.star.lang.XComponent#removeEventListener(com.sun.star.lang.XEventListener)
  */
 public void removeEventListener(XEventListener arg0) {
-	// TODO Auto-generated method stub
-	System.out.println(this.getClass().getName()+" removeEventListener");		
 }
 
 }

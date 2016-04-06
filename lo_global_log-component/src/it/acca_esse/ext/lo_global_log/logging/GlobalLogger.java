@@ -126,7 +126,6 @@ public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Log
 
 	protected void configureLogger() {
 		//set the general level
-		System.out.println("configureLogger: ");
 		m_aLogger.setLevel(Level.FINEST);
 
 		if(m_bEnableConsoleOutput) {
@@ -135,7 +134,6 @@ public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Log
 			m_aLogFormatter = new LocalLogFormatter();
 			m_aConsoleHandl.setFormatter(m_aLogFormatter);		
 			m_aLogger.addHandler(m_aConsoleHandl);
-			System.out.println("console logging enabled");
 		}
 //DEBUG		else	System.out.println("console logging NOT enabled");
 		
@@ -239,6 +237,7 @@ public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Log
 							m_aLogger.logp(Level.INFO, arg1, arg2, arg3);						
 						break;
 					case LoggerLevel.LOG_LEVEL_FINE_value:
+						System.out.println("LOG_LEVEL_FINE_value");
 						if(m_bEnableDebugLogging)
 							m_aLogger.logp(Level.FINE, arg1, arg2, arg3);						
 						break;
