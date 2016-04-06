@@ -267,11 +267,12 @@ build-extension
 			<filter token="NAME" value="${ext_conf_name}" />
 		</filterset >
 		<!-- copy options configuration file -->
-		<copy file="${extension_dir}/OptionsDialog.xcu.xml" tofile="${extension_dest_dir}/OptionsDialog.xcu" />
-		<filterset>
-			<filter token="WEBIDENTBASE" value="${webidentbase_service}" />
-			<filter token="NAME" value="${ext_conf_name}" />
-		</filterset >		
+		<copy file="${extension_dir}/OptionsDialog.xcu.xml" tofile="${extension_dest_dir}/OptionsDialog.xcu">
+			<filterset>
+				<filter token="WEBIDENTBASE" value="${webidentbase_service}" />
+				<filter token="NAME" value="${ext_conf_name}" />
+			</filterset >
+		</copy>
 		<!--- end of subtask -->
 	</target>
 
