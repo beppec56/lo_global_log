@@ -1,5 +1,8 @@
 LoGlobalLog
+
+A LibreOffice singleton Java logger.
+
 (@WEBIDENTBASE@.@NAME@)
-Concesso in doppia licenza secondo MPL/LGPLv3+
+Concesso in licenza secondo MPL 2.0.
 Copyright (c) 2016 Giuseppe Castagno
 Compilato il @BUILD_TIME@ Rev. @REVISION@
