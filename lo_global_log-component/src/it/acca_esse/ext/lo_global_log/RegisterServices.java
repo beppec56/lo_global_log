@@ -5,6 +5,7 @@ import com.sun.star.lib.uno.helper.Factory;
 import com.sun.star.registry.InvalidRegistryException;
 import com.sun.star.registry.XRegistryKey;
 
+import it.acca_esse.ext.lo_global_log.handlers.GlobaLoggerHandler.GlobalLoggerHandlerImpl;
 import it.acca_esse.ext.lo_global_log.logging.GlobalLogger;
 import it.acca_esse.ext.lo_global_log.options.ManageLoggingOptions;
 
@@ -33,6 +34,10 @@ public class RegisterServices {
 		else if ( sImplementationName.equals( ManageLoggingOptions.m_sImplementationName ) ) {
 			xFactory = Factory.createComponentFactory( ManageLoggingOptions.class, ManageLoggingOptions.m_sServiceNames );
 //DEBUG			System.out.println("__getComponentFactory: "+ManageLoggingOptions.m_sImplementationName+" "+xFactory);
+		}
+		else if ( sImplementationName.equals( GlobalLoggerHandlerImpl.m_sImplementationName ) ) {
+			xFactory = Factory.createComponentFactory( GlobalLoggerHandlerImpl.class, GlobalLoggerHandlerImpl.m_sServiceNames );
+//DEBUG			System.out.println("__getComponentFactory: "+GlobalLoggerHandlerImpl.m_sImplementationName+" "+xFactory);
 		}
 		return xFactory;
 	}
@@ -74,7 +79,10 @@ public class RegisterServices {
 		boolean retLogging =
 				Factory.writeRegistryServiceInfo( ManageLoggingOptions.m_sImplementationName, ManageLoggingOptions.m_sServiceNames, xRegistryKey );
 
-//DEBUG			System.out.println("__writeRegistryServiceInfo: "+ManageLoggingOptions.m_sImplementationName+": "+retLogging);
-		return (retGLogg && retLogging);
+		boolean retHandler =
+				Factory.writeRegistryServiceInfo( GlobalLoggerHandlerImpl.m_sImplementationName, GlobalLoggerHandlerImpl.m_sServiceNames, xRegistryKey );
+
+//DEBUG			System.out.println("__writeRegistryServiceInfo: "+GlobalLoggerHandlerImpl.m_sImplementationName+": "+retHandler);
+		return (retGLogg && retLogging && retHandler);
 	}
 }

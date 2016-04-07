@@ -25,5 +25,22 @@
 	oor:package="org.openoffice.Office" >
 	<node oor:name="AddonUI">
 
+		<node oor:name="OfficeHelp">
+			<node oor:name="@WEBIDENTBASE@.@NAME@.OfficeHelp" oor:op="replace">
+				<prop oor:name="URL" oor:type="xs:string">
+					<value>@WEBIDENTBASE@.@NAME@.handlers.GlobalLoggerHandler:HelpAbout</value>
+				</prop>
+				<prop oor:name="ImageIdentifier" oor:type="xs:string">
+					<value></value>
+				</prop>
+				<prop oor:name="Title" oor:type="xs:string" oor:localized="true">
+					<value xml:lang="en">About GlobalLogger...</value>
+					<value xml:lang="it">Informazioni su GlobalLogger...</value>
+				</prop>
+				<prop oor:name="Target" oor:type="xs:string">
+					<value>_self</value>
+				</prop>
+			</node>
+		</node>
 	</node>
 </oor:component-data>

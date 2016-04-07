@@ -17,6 +17,13 @@ public class GlobalConstant {
 	
 	public static final String m_sEXTENSION_CONF_OPTIONS = m_sEXTENSION_CONF_BASE_KEY	+ "GlobalLogOptionsParameters/";
 	
+	public static final String	m_sGLOBALLOG_PROTO_BASE_URL			= m_sGLOBALLOGEXTENSION_IDENTIFIER + ".handlers.GlobalLoggerHandler:";
+
+//	object for help
+	public static final String	m_sON_HELP_ABOUT_PATH					= "HelpAbout";
+	public static final String	m_sON_HELP_ABOUT_PATH_COMPLETE			= m_sGLOBALLOG_PROTO_BASE_URL+m_sON_HELP_ABOUT_PATH;
+
+	
 	// Names used in configuration, the names are defined in file
 	// extension_conf_files/extension/AddonConfiguration.xcs.xml
 	/// logging configuration
