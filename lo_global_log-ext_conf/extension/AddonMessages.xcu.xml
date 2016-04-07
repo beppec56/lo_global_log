@@ -27,8 +27,8 @@ Copyrigth 2016 by ??
 		-->
 		<node oor:name="id_descr" oor:op="replace">
 			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
-				<value xml:lang="en">easyBrowse</value>
-				<value xml:lang="it">easyBrowse</value>
+				<value xml:lang="en">GlobalLogger</value>
+				<value xml:lang="it">GlobalLogger</value>
 			</prop>
 		</node>
 		<!--
@@ -72,8 +72,8 @@ Copyrigth 2016 by ??
 		-->
 		<node oor:name="id_about_menu" oor:op="replace">
 			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
-				<value xml:lang="en">About easyBrowse…</value>
-				<value xml:lang="it">Informazioni su easyBrowse…</value>
+				<value xml:lang="en">About GlobalLogger…</value>
+				<value xml:lang="it">Informazioni su GlobalLogger…</value>
 			</prop>
 		</node>
 		<!--
@@ -81,18 +81,18 @@ Copyrigth 2016 by ??
 		-->
 		<node oor:name="id_about_title" oor:op="replace">
 			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
-				<value xml:lang="en">About easyBrowse</value>
-				<value xml:lang="it">Informazioni su easyBrowse</value>
+				<value xml:lang="en">About GlobalLogger</value>
+				<value xml:lang="it">Informazioni su GlobalLogger</value>
 			</prop>
 		</node>
 		<node oor:name="id_about_mex" oor:op="replace">
 			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
-				<value xml:lang="en">easyBrowse
+				<value xml:lang="en">GlobalLogger
 (@WEBIDENTBASE@.@NAME@)
 Built with @JAVA_VERS@ on @BUILD_TIME@ Rev. @REVISION@.
 Licensed under ??
 Copyright 2016 ??</value>
-				<value xml:lang="it">easyBrowse
+				<value xml:lang="it">GlobalLogger
 (@WEBIDENTBASE@.@NAME@)
 Compilato con @JAVA_VERS@ il @BUILD_TIME@ Rev. @REVISION@.
 Concesso in licenza secondo ??
@@ -102,8 +102,8 @@ Copyright 2016 ??
 		</node>
 		<node oor:name="id_error_extension" oor:op="replace">
 			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
-				<value xml:lang="en">easyBrowse extension error</value>
-				<value xml:lang="it">Errore estensione easyBrowse</value>
+				<value xml:lang="en">GlobalLogger extension error</value>
+				<value xml:lang="it">Errore estensione GlobalLogger</value>
 			</prop>
 		</node>
 		<!--
@@ -135,51 +135,6 @@ Giuseppe Castagno, sviluppatore
 			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
 				<value xml:lang="en">Extension license</value>
 				<value xml:lang="it">Licenza dell'estensione</value>
-			</prop>
-		</node>
-		<!--
-		    login dialog title
-		-->
-		<node oor:name="id_login_title" oor:op="replace">
-			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
-				<value xml:lang="en">easyBrowse login</value>
-				<value xml:lang="it">Login easyBrowse</value>
-			</prop>
-		</node>
-		<!--
-		    login dialog, activate demo mode (default user and password)
-		-->
-		<node oor:name="id_demo_mode" oor:op="replace">
-			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
-				<value xml:lang="en">Demo mode</value>
-				<value xml:lang="it">Modo demo</value>
-			</prop>
-		</node>
-		<!--
-		    login dialog
-		-->
-		<node oor:name="id_user_label" oor:op="replace">
-			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
-				<value xml:lang="en">User name:</value>
-				<value xml:lang="it">Nome utente:</value>
-			</prop>
-		</node>
-		<!--
-		    login dialog
-		-->
-		<node oor:name="id_passwd_label" oor:op="replace">
-			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
-				<value xml:lang="en">Password:</value>
-				<value xml:lang="it">Password:</value>
-			</prop>
-		</node>
-		<!--
-		    login dialog, login button label
-		-->
-		<node oor:name="id_login_label" oor:op="replace">
-			<prop oor:name="Text" oor:type="xs:string" oor:localized="true">
-				<value xml:lang="en">Login</value>
-				<value xml:lang="it">Login</value>
 			</prop>
 		</node>
 		<!--
