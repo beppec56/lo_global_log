@@ -66,13 +66,6 @@ public class OptionsParametersAccess extends ConfigurationAccess  implements XCo
 			try {
 				XNameAccess xNAccess = (XNameAccess) UnoRuntime.queryInterface(
 						XNameAccess.class, m_oOptionsParametersRegKey );
-/*				String[] elements = xNAccess.getElementNames();
-				System.out.print( "Available property names: " );
-
-				for (int i = 0; i < elements.length; i++) {
-					System.out.print( elements[i] + ", " );
-				}
-				System.out.print( "\n" );*/
 
 				if (xNAccess.hasByName( sTheName )) {
 					XPropertySet xPS = (XPropertySet) UnoRuntime.queryInterface(

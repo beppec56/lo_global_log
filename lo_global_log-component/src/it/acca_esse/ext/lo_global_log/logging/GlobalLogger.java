@@ -194,7 +194,6 @@ public class GlobalLogger extends ComponentBase implements XServiceInfo, XOX_Log
 				}				
 			}
 		}
-/*FIXME DEBUG		else System.out.println("file logging NOT enabled ");*/
 			
 		if(!m_bEnableConsoleOutput && !m_bEnableFileOutput)
 			m_bEnableLogging = false;

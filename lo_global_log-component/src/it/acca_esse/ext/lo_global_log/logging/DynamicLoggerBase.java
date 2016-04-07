@@ -53,7 +53,6 @@ abstract class DynamicLoggerBase implements IDynamicLogger {
 			m_xLogger = (XOX_Logger)UnoRuntime.queryInterface(XOX_Logger.class, 
 					_ctx.getValueByName(GlobalConstant.m_sSINGLETON_LOGGER_SERVICE_INSTANCE));
 			if(m_xLogger == null) {
-				System.out.println("it.guermandi.ext.easyb.logging.DynamicLoggerBase: there isn't a main logger!");
 				//FIXME prepare a default local logger, using the standard one of Java, no file, only console
 				//use it instead of the singleton one
 			}
