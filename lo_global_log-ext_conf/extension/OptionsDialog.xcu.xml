@@ -19,9 +19,8 @@
   <node oor:name="Nodes">
     <node oor:name="@WEBIDENTBASE@.@NAME@.options.node" oor:op="fuse">
       <prop oor:name="Label">
-		<value xml:lang="en">Global Logger Options</value>
-		<value xml:lang="it">Opzioni per 'Global Logger'</value>
-      </prop>
+		<value xml:lang="en">LoGlobalLog (Global Logger)</value>
+	  </prop>
       <!-- thepage for node -->
       <prop oor:name="OptionsPage">
         <value>%origin%/dialogs/leaf_logging_root/root_node.xdl</value>
